@@ -55,7 +55,7 @@ columns:
 
   - data_type: BOOLEAN
     can_group_by: true
-    id: is_payer
+    id: payer
 
   - data_type: INTEGER
     id: daily_payers
