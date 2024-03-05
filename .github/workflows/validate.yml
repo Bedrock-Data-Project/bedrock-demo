@@ -17,8 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --index-url https://test.pypi.org/simple/ asemic
-
+          pip install -i https://test.pypi.org/simple/ asemic
       - name: Run the package
         working-directory: heroicmini
         run: |
