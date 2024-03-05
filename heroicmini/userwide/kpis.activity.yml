@@ -28,7 +28,7 @@ kpis:
       mdau:
         select: "SAFE_DIVIDE(SUM({dau}), COUNT(DISTINCT {date_}))"
         from: "heroicmini_main.daily_user_history"
-        where: "{is_payer}"
+        where: "{payer}"
     total: AVG
   - id: mdau
     x_axis:
@@ -37,7 +37,7 @@ kpis:
       mdau:
         select: "SUM({dau})"
         from: "heroicmini_main.daily_user_history"
-        where: "{is_payer}"  
+        where: "{payer}"  
 
   - id: wau
     label: WAU
