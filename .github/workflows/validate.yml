@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install --upgrade setuptools
+          pip install setuptools==40.8.0
           pip install -i https://test.pypi.org/simple/ asemic
       - name: Run the package
         working-directory: heroicmini
