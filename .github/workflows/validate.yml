@@ -1,0 +1,25 @@
+name: Validate
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install asemic
+
+      - name: Run the package
+        working-directory: heroicmini
+        run: |
+          ASEMIC_TOKEN=${{ secrets.ASEMIC_TOKEN }} asemic validate
