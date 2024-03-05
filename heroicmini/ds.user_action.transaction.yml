@@ -1,0 +1,54 @@
+table_name: "heroicmini_main.transaction"
+date_column: date_
+user_id_column: user_id
+timestamp_column: transaction_timestamp
+time_grain: min15
+
+columns:
+  - id: _date
+    data_type: DATE
+    can_filter: false
+
+  - id: user_id
+    data_type: STRING
+
+  - id: transaction_timestamp
+    data_type: DATETIME
+
+  - id: gross_revenue_usd
+    data_type: NUMBER
+
+  - id: country
+    data_type: STRING
+    can_group_by: true
+
+  - id: platform
+    data_type: STRING
+    can_group_by: true
+
+computed_columns:
+  - column:
+      data_type: DATE
+      can_group_by: true
+      id: date_
+    formula: "{_date}"
+
+enrichments:
+  - datasource: country
+    on:
+      - source: country
+        target: country_name
+kpis:
+  - id: transaction_count
+    sql:
+      transaction_count:
+        select: "COUNT(*)"
+    x_axis:
+      - date_
+
+  - id: gross_revenue_usd
+    sql:
+      gross_revenue_usd:
+        select: "SUM({gross_revenue_usd})"
+    x_axis:
+      - date_

@@ -1,0 +1,96 @@
+table_name: "heroicmini_main.daily_user_history" # TODO use user_history, this is a limitation as table_name can't be a view, fix that
+enrich_table_name: "heroicmini_main.daily_user_history"
+date_column: date_
+registration_date_column: registration_date
+user_id_column: user_id
+
+columns:
+  - data_type: DATE
+    can_filter: false
+    id: _date
+
+  - data_type: STRING
+    id: user_id
+
+  - data_type: STRING
+    can_group_by: true
+    id: registration_country
+
+  - data_type: STRING
+    can_group_by: true
+    id: last_location_country
+
+  - data_type: STRING
+    can_group_by: true
+    id: registration_platform
+
+  - data_type: DATE
+    can_group_by: true
+    id: registration_date
+
+  - data_type: INTEGER
+    id: dau
+    label: DAU
+
+  - data_type: INTEGER
+    id: mau
+    label: MAU
+
+  - data_type: DATE
+    id: last_login_date
+
+  - data_type: INTEGER
+    id: sessions_count
+
+  - data_type: INTEGER
+    id: playtime
+
+  - data_type: NUMBER
+    id: gross_revenue_usd
+    label: Gross Revenue USD
+
+  - data_type: NUMBER
+    id: gross_revenue_usd_total
+    label: Gross Revenue USD Total
+
+  - data_type: BOOLEAN
+    can_group_by: true
+    id: is_payer
+
+  - data_type: INTEGER
+    id: daily_payers
+
+computed_columns:
+  - column:
+      id: cohort_size
+      data_type: INTEGER
+      can_filter: false
+    formula: "1"
+
+  - column:
+      data_type: DATE
+      can_group_by: true
+      id: registration_week
+    formula: "DATE_TRUNC({registration_date}, WEEK(MONDAY))"
+
+  - column:
+      data_type: DATE
+      can_group_by: true
+      id: registration_month
+    formula: "DATE_TRUNC({registration_date}, MONTH)"
+
+  - column:
+      data_type: INTEGER
+      can_group_by: true
+      id: cohort_day
+    formula: "DATE_DIFF({_date}, {registration_date}, DAY)"
+
+  - column:
+      data_type: DATE
+      can_group_by: true
+      id: date_
+    formula: "{_date}"
+
+
+
+

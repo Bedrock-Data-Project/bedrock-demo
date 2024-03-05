@@ -1,0 +1,108 @@
+category: Revenue
+kpis:
+  - id: gross_revenue_usd
+    label: IAP Revenue Gross USD
+    recommended: true
+    unit: { symbol: "$", is_prefix: true }
+    sql:
+      gross_revenue_usd:
+        select: "SUM({gross_revenue_usd})"
+        from: "heroicmini_main.daily_user_history"
+    x_axis:
+      - date_
+      - cohort_day
+
+  #  - id: daily_purchase_rate
+  #    formula: daily_payers * 100 / dau
+  #    unit: { symbol: "%", is_prefix: false }
+  #    x_axis:
+  #      date_: { x: sum, y: sum }
+  #      cohort_day: { x: sum, y: sum }
+  #
+  #  - id: daily_conversion
+  #    formula: new_payers * 100 / dau
+  #    unit: { symbol: "%", is_prefix: false }
+  #    x_axis:
+  #      date_: { x: sum, y: sum }
+  #      cohort_day: { x: sum, y: sum }
+
+  - id: arpdau_gross
+    label: IAP ARPDAU Gross
+    formula: 'SAFE_DIVIDE({gross_revenue_usd}, {dau})'
+    recommended: true
+    unit: { symbol: "$", is_prefix: true }
+    x_axis:
+      - date_
+      - cohort_day
+
+  - id: arppu_gross
+    label: IAP ARPPU Gross
+    formula: 'SAFE_DIVIDE*({gross_revenue_usd}, {daily_payers})'
+    recommended: true
+    unit: { symbol: "$", is_prefix: true }
+    x_axis:
+      - date_
+      - cohort_day
+
+  #  - id: avg_transaction_gross
+  #    formula: gross_revenue_usd / transactions_count
+  #    unit: { symbol: "$", is_prefix: true }
+  #    sql:
+  #      transactions_count:
+  #        select: "SUM({transactions_count})"
+  #        from: "heroicmini_main.daily_user_history"
+  #    x_axis:
+  #      date_: { x: sum, y: sum }
+  #      cohort_day: { x: sum, y: sum }
+  #
+  #  - id: new_payers
+  #    sql:
+  #      select: "SUM({new_payers})"
+  #      from: "heroicmini_main.daily_user_history"
+  #    x_axis:
+  #      date_: { x: sum, y: sum }
+  #      cohort_day: { x: sum, y: sum }
+  #
+  - id: daily_payers
+    sql:
+      daily_payers:
+        select: "SUM({daily_payers})"
+        from: "heroicmini_main.daily_user_history"
+    x_axis:
+      - date_
+      - cohort_day
+  #
+  #  - id: total_payers
+  #    sql:
+  #      select: "SUM({total_payers})"
+  #    x_axis:
+  #      date_: { x: sum, y: sum }
+  #      cohort_day: { x: sum, y: sum }
+
+  - id: ltv
+    label: LTV Gross
+    formula: 'SAFE_DIVIDE({gross_revenue_usd_total}, {cohort_size})'
+    unit: { symbol: "$", is_prefix: true }
+    sql:
+      gross_revenue_usd_total:
+        select: "SUM({gross_revenue_usd_total})"
+    x_axis:
+      - cohort_day
+
+cohorted_daily_kpis:
+  cohort_days: [ 1, 3, 7, 14, 28, 30, 45, 60, 90, 180, 365 ]
+  table_up_to_cohort_day_30: "heroicmini_main.monthly_user_history"
+  table_above_cohort_day_30: "heroicmini_main.user_history"
+  kpis:
+    - id: ltv_gross_d{}
+      formula: 'SAFE_DIVIDE({gross_revenue_usd_total}, {cohort_size})'
+      unit: { symbol: "%", is_prefix: false }
+      sql:
+        gross_revenue_usd_total:
+          select: "SUM({gross_revenue_usd_total})"
+          where: "{cohort_day} = {}"
+        cohort_size:
+          select: "SUM({cohort_size})"
+          where: "{cohort_day} = {}"
+      x_axis:
+        - date_

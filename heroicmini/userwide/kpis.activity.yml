@@ -1,0 +1,164 @@
+category: Engagement
+kpis:
+  - id: dau
+    label: DAU
+    x_axis:
+     - date_
+    recommended: true
+    sql:
+      dau:
+        select: "SAFE_DIVIDE(SUM({dau}), COUNT(DISTINCT {date_}))"
+        from: "heroicmini_main.daily_user_history"
+    total: AVG
+  - id: dau
+    x_axis:
+     - cohort_day
+    recommended: true
+    sql:
+      dau:
+        select: "SUM({dau})"
+        from: "heroicmini_main.daily_user_history"
+
+  - id: mdau
+    label: mDAU
+    x_axis:
+     - date_
+    recommended: true
+    sql:
+      mdau:
+        select: "SAFE_DIVIDE(SUM({dau}), COUNT(DISTINCT {date_}))"
+        from: "heroicmini_main.daily_user_history"
+        where: "{is_payer}"
+    total: AVG
+  - id: mdau
+    x_axis:
+     - cohort_day
+    sql:
+      mdau:
+        select: "SUM({dau})"
+        from: "heroicmini_main.daily_user_history"
+        where: "{is_payer}"  
+
+  - id: wau
+    label: WAU
+    x_axis:
+     - date_
+    recommended: true
+    sql:
+      wau:
+        select: "SAFE_DIVIDE(SUM({wau}), COUNT(DISTINCT {date_}))"
+        from: "heroicmini_main.monthly_user_history"
+    total: AVG
+  - id: wau
+    x_axis:
+     - cohort_day
+    recommended: true
+    sql:
+      wau:
+        select: "SUM({wau})"
+        from: "heroicmini_main.monthly_user_history"
+
+  - id: mau
+    label: MAU
+    x_axis:
+     - date_
+    recommended: true
+    sql:
+      mau:
+        select: "SAFE_DIVIDE(SUM({mau}), COUNT(DISTINCT {date_}))"
+        from: "heroicmini_main.monthly_user_history"
+    total: AVG
+  - id: mau
+    x_axis:
+     - cohort_day
+    recommended: true
+    sql:
+      mau:
+        select: "SUM({mau})"
+        from: "heroicmini_main.monthly_user_history"
+
+  - id: mau_lost
+    label: MAU Lost
+    sql:
+      mau_lost:
+        select: "SUM(if({date_} - {last_logindate_} = interval 29 day, 1, 0))"
+        from: "heroicmini_main.monthly_user_history"
+    x_axis:
+      - date_
+      - cohort_day
+  #
+  #  - id: mau_reactivated
+  #    sql:
+  #      mau_reactivated:
+  #        select: "SUM(if({date_} - {previous_login_day} >= interval 29 day and {last_login_day} = {date_}, 1, 0))"
+  #        from: "heroicmini_main.daily_user_history"
+  #    x_axis:
+  #      date_: { x: sum, y: sum }
+  #      cohort_day: { x: sum, y: sum }
+
+  - id: stickiness
+    formula: 'SAFE_DIVIDE({dau} * 100, {mau})'
+    unit: { symbol: "%", is_prefix: false }
+    x_axis:
+      - date_
+      - cohort_day
+
+  - id: retention
+    recommended: true
+    formula: 'SAFE_DIVIDE({dau} * 100, {cohort_size})'
+    unit: { symbol: "%", is_prefix: false }
+    x_axis:
+      - cohort_day
+
+  - id: avg_sessions
+    formula: 'SAFE_DIVIDE({sessions_count}, {dau})'
+    sql:
+      sessions_count:
+        select: "SUM({sessions_count})"
+        from: "heroicmini_main.daily_user_history"
+    x_axis:
+      - date_
+      - cohort_day
+
+  - id: avg_session_length
+    formula: 'SAFE_DIVIDE({playtime}, {sessions_count})'
+    unit: { symbol: "min", is_prefix: false }
+    sql:
+      playtime:
+        select: SUM({playtime})
+        from: "heroicmini_main.daily_user_history"
+      sessions_count:
+        select: "SUM({sessions_count})"
+        from: "heroicmini_main.daily_user_history"
+    x_axis:
+      - date_
+      - cohort_day
+
+  - id: avg_playtime
+    formula: 'SAFE_DIVIDE({playtime}, {dau})'
+    unit: { symbol: "min", is_prefix: false }
+    sql:
+      playtime:
+        select: SUM({playtime})
+        from: "heroicmini_main.daily_user_history"
+    x_axis:
+      - date_
+      - cohort_day
+
+cohorted_daily_kpis:
+  cohort_days: [ 1, 3, 7, 14, 28, 30, 45, 60, 90, 180, 365 ]
+  table_up_to_cohort_day_30: "heroicmini_main.monthly_user_history"
+  table_above_cohort_day_30: "heroicmini_main.user_history"
+  kpis:
+    - id: retention_d{}
+      formula: 'SAFE_DIVIDE({dau} * 100, {cohort_size})'
+      unit: { symbol: "%", is_prefix: false }
+      sql:
+        dau:
+          select: "SUM({dau})"
+          where: "{cohort_day} = {}"
+        cohort_size:
+          select: "SUM({cohort_size})"
+          where: "{cohort_day} = {}"
+      x_axis:
+        - date_

@@ -1,0 +1,17 @@
+database_type: bigquery
+database_config:
+  gcp_project_id: bedrock-devel
+  service_account_key: |
+    {
+      "type": "service_account",
+      "project_id": "bedrock-devel",
+      "private_key_id": "b2d4bd02573c0a96c89dfe4fcd9e114bc3504213",
+      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCe4WnrS3agOqJ0\nCeUEp9q9+y8Qg4u+/eA5kuDWhB3ooFPkIkNnJUzAa/NKTcRYo9jT4TezHtU3Spwf\nzgImNB+VKE58HhTbSGtcK62tvg7CYJdDRWzyV/K6nrwKft3HxCgOCyOM+77emO4E\n6pnMd9wusPtJxUpQvh7VVOlbjEcXvONGrFqsyPomU7d7uBTDGyLl/nqs/Fi6tUbT\nG93w4gQZAUYvLst9Xk0hxN00IfuaoZpgyLN17cE0KFXK3I+IJR3CnyH/Qt9ufzep\nC1peyocBvSXFxOzCwi+UHhHAueH6qI6mioSBj8F2/l208ycOD2SMIZCGIH+Vc7LO\nPEtyfuHjAgMBAAECggEAEPRJ+r9jScboBgz2QPBukb5nr9HxzDBISKyJTKrtjCDr\nwtj7K1saHSCH5kJ1NOZLIZUTfgxIwW03StePeCcwxZh3A5ysKhhIyJ2qm3NAHPL0\nwUt7zEKhVtPQiigun34prhH3Obi1jghwwdqNDfouZ1cggadJfmNDZA17F3dZMMme\nxfnJur2hpO2WCndI9FZv3WrJSnaML4lYQ7qxk1sbU4ZYn2ZHaWDScOXsrFEjRDmV\nO7yq6S5Qgntk3RaSXet+NwfsAIUrF/RjzDyZbHf5/UYEOSppafAmYm4NGjzLWlXp\nELOS4RYUE0+tUFSaL1WLMBiKSdFePbMo4MuEY9pZLQKBgQDLGF0r4pq0bSEWbG8E\nHof4vdjEXnHiQnra444GDufdtDsY7GbtviUZsCDy8fxewGBix2BKEaD4MU4SjZ3+\n2PS6RNFZ4Nb8ZWE3UlqDOx2huYq5cV2/DCK3pCwgOZbUO3uoKqDYVmi5qZfAnY6N\nU86+fiyZqS9obFEzu8D/kqwe/wKBgQDIRIt7kY6onFzRad80fk7QoBRV0veF7q6m\nr0t3bPYUgdBwcOzq9K1WmGkNCwH+GZHAKZBJsnG7PJU2UXP0sM4GYnkOqNtdT796\nFWimDItd2eLl476y/8t5htXBkHBAT/oPHKkPnqA08Ny8GIySs55bk2ATdQNkGlAt\nVX3ey3+hHQKBgQCDAF8w7IT/tpiuHxlo3cy1DLgiygzJdjpKsJcunzS+k/++rtYh\nqhHCRRKrwp0X/Rzu+k3I2SAsl5kVbJWqCgWplLQ5NkdWHIqdpZhOp7YQWF78CP0A\nO3K1Y8c2rg71LL0xlvWTNgFtKNCC5N5LmPB1fWuFXlT/FUc3iHcQI2q0vwKBgD97\n8xdlyepLPuUngZkbXRKnXCrkqJBtXDH8qZifEtbnW9L5CTFmBLjJsatvzN7m7hwT\nUOj7xy/KgaZpZa+wiG7fsm5iOr+2swUZWkYg/eDvXAzyCBaoHbFVe9dTWTIZ6DP4\nKuOHrlN58w8xXQZ4J//xlOg2FLAb40SrsC37JmdFAoGAaYUGydInGclLMVHPBnQC\nJt4MVraICAy72gXbnEgwYUADhlu9MzHOP9mLKIGN8R/Fvzl7DS4T7pesD0WLTTtr\nAJaM40vzcUshEvg6PvhqWB+9CceDYSHNUQcCsYVH/04wZ2N6KtVR+r8Y7cazs6Rh\nty4aDP5KzmP65uTw2CiOkE8=\n-----END PRIVATE KEY-----\n",
+      "client_email": "bq-user@bedrock-devel.iam.gserviceaccount.com",
+      "client_id": "109308247347941154755",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://oauth2.googleapis.com/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bq-user%40bedrock-devel.iam.gserviceaccount.com",
+      "universe_domain": "googleapis.com"
+    }
