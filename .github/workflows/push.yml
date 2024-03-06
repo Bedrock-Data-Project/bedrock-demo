@@ -26,9 +26,9 @@ jobs:
       - name: Replace environment variables in file
         working-directory: heroicmini
         run: |
-          sed -i "s/BQ_KEY/$SECRET/g" database.yml
+          sed -i "s/BQ_KEY/$BQ_KEY/g" database.yml
         env:
-          NEW_VARIABLE: ${{ secrets.BQ_KEY }}
+          BQ_KEY: ${{ secrets.BQ_KEY }}
 
       - name: Run the package
         working-directory: heroicmini
