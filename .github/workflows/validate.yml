@@ -27,6 +27,7 @@ jobs:
         working-directory: heroicmini
         run: |
           sed -i "s/BQ_KEY/$SECRET/g" database.yml
+          cat database.yml
         env:
           NEW_VARIABLE: ${{ secrets.BQ_KEY }}
 
