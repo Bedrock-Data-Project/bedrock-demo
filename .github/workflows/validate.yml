@@ -25,9 +25,9 @@ jobs:
 
       - name: Save secret to file
         run: |
-          echo "${{ secrets.HEROICMINI_DATABASE }}" > heroicmini/database.yml
-          cat heroicmini/database.yml
-        
+          cat << EOF > heroicmini/database.yml
+          ${{ secrets.HEROICMINI_DATABASE }}
+          EOF
 
       - name: Run the package
         working-directory: heroicmini
