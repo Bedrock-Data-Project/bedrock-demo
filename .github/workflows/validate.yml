@@ -28,7 +28,7 @@ jobs:
 
       - name: Replace environment variables in file
         run: |
-          sed -i "s|BQ_KEY|$(cat secret.txt)|g" heroicmini/database.yml
+          sed -i "s|BQ_KEY|$(cat bq_secret.txt)|g" heroicmini/database.yml
           cat heroicmini/database.yml
 
       - name: Run the package
