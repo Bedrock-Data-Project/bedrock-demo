@@ -23,12 +23,8 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple asemic
 
-      - name: Replace environment variables in file
-        working-directory: heroicmini
-        run: |
-          sed -i "s/BQ_KEY/$BQ_KEY/g" database.yml
-        env:
-          BQ_KEY: ${{ secrets.BQ_KEY }}
+      - name: Save secret to file
+        run: echo "${{ secrets.HEROICMINI_DATABASE }}" > heroicmini/database.yml
 
       - name: Run the package
         working-directory: heroicmini
