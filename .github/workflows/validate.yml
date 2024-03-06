@@ -24,7 +24,10 @@ jobs:
           python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple asemic
 
       - name: Save secret to file
-        run: echo "${{ secrets.HEROICMINI_DATABASE }}" > heroicmini/database.yml
+        run: |
+          echo "${{ secrets.HEROICMINI_DATABASE }}" > heroicmini/database.yml
+          cat heroicmini/database.yml
+        
 
       - name: Run the package
         working-directory: heroicmini
