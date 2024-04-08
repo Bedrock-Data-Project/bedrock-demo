@@ -1,0 +1,35 @@
+table_name: "heroicmini_main.login"
+date_column: date_
+user_id_column: user_id
+timestamp_column: login_timestamp
+time_grain: min15
+
+columns:
+  - id: _date
+    data_type: DATE
+    can_filter: false
+
+  - id: user_id
+    data_type: STRING
+
+  - id: login_timestamp
+    data_type: DATETIME
+
+  - id: platform
+    data_type: STRING
+    can_group_by: true
+
+computed_columns:
+  - column:
+      data_type: DATE
+      can_group_by: true
+      id: date_
+    formula: "{_date}"
+
+kpis:
+  - id: login_count
+    sql:
+      login_count:
+        select: "COUNT(*)"
+    x_axis:
+      - date_
