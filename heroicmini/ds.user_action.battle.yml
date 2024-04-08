@@ -22,4 +22,10 @@ computed_columns:
       id: date_
     formula: "{_date}"
 
-kpis: []
+kpis:
+  - id: battle_count
+    sql:
+      transaction_count:
+        select: "COUNT(*)"
+    x_axis:
+      - date_
