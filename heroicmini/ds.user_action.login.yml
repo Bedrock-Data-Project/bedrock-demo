@@ -29,7 +29,7 @@ computed_columns:
 kpis:
   - id: login_count
     sql:
-      transaction_count:
+      login_count:
         select: "COUNT(*)"
     x_axis:
       - date_
