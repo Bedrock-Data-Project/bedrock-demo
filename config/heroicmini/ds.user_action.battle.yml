@@ -2,7 +2,6 @@ table_name: "heroicmini_main.battle"
 date_column: date_
 user_id_column: user_id
 timestamp_column: battle_timestamp
-time_grain: min15
 
 columns:
   - id: _date
@@ -27,5 +26,4 @@ kpis:
     sql:
       battle_count:
         select: "COUNT(*)"
-    x_axis:
-      - date_
+

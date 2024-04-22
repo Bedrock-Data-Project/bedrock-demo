@@ -2,7 +2,6 @@ table_name: "heroicmini_main.login"
 date_column: date_
 user_id_column: user_id
 timestamp_column: login_timestamp
-time_grain: min15
 
 columns:
   - id: _date
@@ -31,5 +30,4 @@ kpis:
     sql:
       login_count:
         select: "COUNT(*)"
-    x_axis:
-      - date_
+

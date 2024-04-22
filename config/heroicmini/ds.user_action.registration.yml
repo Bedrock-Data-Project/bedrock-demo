@@ -1,8 +1,7 @@
-table_name: "heroicmini_main.transaction"
+table_name: "heroicmini_main.registration"
 date_column: date_
 user_id_column: user_id
 timestamp_column: transaction_timestamp
-time_grain: min15
 
 columns:
   - id: _date
@@ -43,12 +42,8 @@ kpis:
     sql:
       transaction_count:
         select: "COUNT(*)"
-    x_axis:
-      - date_
 
   - id: gross_revenue_usd
     sql:
       gross_revenue_usd:
         select: "SUM({gross_revenue_usd})"
-    x_axis:
-      - date_

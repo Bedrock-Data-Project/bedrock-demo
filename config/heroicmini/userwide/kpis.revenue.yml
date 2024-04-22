@@ -7,9 +7,8 @@ kpis:
     sql:
       gross_revenue_usd:
         select: "SUM({gross_revenue_usd})"
-        from: "heroicmini_main.daily_user_history"
     x_axis:
-      - date_
+      - _date
       - cohort_day
 
   #  - id: daily_purchase_rate
@@ -32,7 +31,7 @@ kpis:
     recommended: true
     unit: { symbol: "$", is_prefix: true }
     x_axis:
-      - date_
+      - _date
       - cohort_day
 
   - id: arppu_gross
@@ -41,7 +40,7 @@ kpis:
     recommended: true
     unit: { symbol: "$", is_prefix: true }
     x_axis:
-      - date_
+      - _date
       - cohort_day
 
   #  - id: avg_transaction_gross
@@ -50,7 +49,6 @@ kpis:
   #    sql:
   #      transactions_count:
   #        select: "SUM({transactions_count})"
-  #        from: "heroicmini_main.daily_user_history"
   #    x_axis:
   #      date_: { x: sum, y: sum }
   #      cohort_day: { x: sum, y: sum }
@@ -58,7 +56,6 @@ kpis:
   #  - id: new_payers
   #    sql:
   #      select: "SUM({new_payers})"
-  #      from: "heroicmini_main.daily_user_history"
   #    x_axis:
   #      date_: { x: sum, y: sum }
   #      cohort_day: { x: sum, y: sum }
@@ -67,9 +64,8 @@ kpis:
     sql:
       daily_payers:
         select: "SUM({daily_payers})"
-        from: "heroicmini_main.daily_user_history"
     x_axis:
-      - date_
+      - _date
       - cohort_day
   #
   #  - id: total_payers
@@ -90,19 +86,14 @@ kpis:
       - cohort_day
 
 cohorted_daily_kpis:
-  cohort_days: [ 1, 3, 7, 14, 28, 30, 45, 60, 90, 180, 365 ]
-  table_up_to_cohort_day_30: "heroicmini_main.monthly_user_history"
-  table_above_cohort_day_30: "heroicmini_main.user_history"
-  kpis:
-    - id: ltv_gross_d{}
-      formula: 'SAFE_DIVIDE({gross_revenue_usd_total}, {cohort_size})'
-      unit: { symbol: "%", is_prefix: false }
-      sql:
-        gross_revenue_usd_total:
-          select: "SUM({gross_revenue_usd_total})"
-          where: "{cohort_day} = {}"
-        cohort_size:
-          select: "SUM({cohort_size})"
-          where: "{cohort_day} = {}"
-      x_axis:
-        - date_
+  - id: ltv_gross_d{}
+    formula: 'SAFE_DIVIDE({gross_revenue_usd_total}, {cohort_size})'
+    unit: { symbol: "%", is_prefix: false }
+    sql:
+      gross_revenue_usd_total:
+        select: "SUM({gross_revenue_usd_total})"
+        where: "{cohort_day} = {}"
+      cohort_size:
+        select: "SUM({cohort_size})"
+        where: "{cohort_day} = {}"
+

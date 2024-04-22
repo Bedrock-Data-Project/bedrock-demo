@@ -1,0 +1,136 @@
+# yaml-language-server: $schema=https://my.url.to/the/schema
+
+base_table_prefix: "heroicmini_main.user_wide"
+
+registration_date_column: "registration_date"
+date_column: "_date"
+user_id_column: "user_id"
+
+registration_columns:
+
+  - column:
+      id: _date
+      data_type: DATE
+      can_filter: false
+
+  - column:
+      id: user_id
+      data_type: STRING
+
+  - column:
+      data_type: STRING
+      id: registration_date
+      can_group_by: true
+    source_column: date_
+
+  - column:
+      data_type: STRING
+      can_group_by: true
+      id: registration_country
+
+  - column:
+      data_type: STRING
+      can_group_by: true
+      id: registration_platform
+
+user_action_columns:
+  - column:
+      data_type: INTEGER
+      id: dau
+      label: DAU
+    table: "heroicmini_main.session"
+    aggregation_expression: "1"
+    missing_value: 0
+
+  - column:
+      data_type: INTEGER
+      id: mau
+      label: MAU
+    table: "heroicmini_main.session"
+    aggregation_expression: "1"
+    missing_value: 0
+    days: 30
+
+  - column:
+      data_type: INTEGER
+      id: sessions_count
+    table: "heroicmini_main.session"
+    aggregation_expression: "COUNT(*)"
+    missing_value: 0
+
+  - column:
+      data_type: INTEGER
+      id: playtime
+    table: "heroicmini_main.session"
+    aggregation_expression: "SUM({playtime})"
+    missing_value: 0
+
+  - column:
+      data_type: NUMBER
+      id: gross_revenue_usd
+      label: Gross Revenue USD
+    table: "heroicmini_main.transaction"
+    aggregation_expression: "SUM({gross_revenue_usd})"
+    missing_value: 0
+    rolling_windows: [7, 28]
+
+  - column:
+      data_type: INTEGER
+      id: daily_payers
+    table: "heroicmini_main.transaction"
+    aggregation_expression: "1"
+    missing_value: 0
+
+total_columns:
+  - column:
+      data_type: DATE
+      id: last_login_date
+      can_group_by: true
+    table: "heroicmini_main.session"
+    aggregation_expression: "MAX({date_})"
+    missing_value: "NULL"
+    merge_expression: "COALESCE({__current_value}, {__total})"
+
+  - column:
+      data_type: NUMBER
+      id: gross_revenue_usd_total
+      label: Gross Revenue USD Total
+    source_column: gross_revenue_usd
+    merge_expression: "{__current_value} + {__total}"
+
+  - column:
+      data_type: BOOLEAN
+      can_group_by: true
+      id: payer
+    aggregation_expression: "MAX({payer})"
+    missing_value: "FALSE"
+    merge_expression: "{__total} OR {__current_value}"
+
+computed_columns:
+  - column:
+      id: cohort_size
+      data_type: INTEGER
+      can_filter: false
+    formula: "1"
+
+  - column:
+      data_type: DATE
+      can_group_by: true
+      id: registration_week
+    formula: "DATE_TRUNC({registration_date}, WEEK(MONDAY))"
+
+  - column:
+      data_type: DATE
+      can_group_by: true
+      id: registration_month
+    formula: "DATE_TRUNC({registration_date}, MONTH)"
+
+  - column:
+      data_type: INTEGER
+      can_group_by: true
+      id: cohort_day
+    formula: "DATE_DIFF({_date}, {registration_date}, DAY)"
+
+
+
+
