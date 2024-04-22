@@ -25,11 +25,11 @@ jobs:
 
       - name: Save secret to file
         run: |
-          cat << EOF > heroicmini/database.yml
+          cat << EOF > config/heroicmini/database.yml
           ${{ secrets.HEROICMINI_DATABASE }}
           EOF
 
       - name: Run the package
-        working-directory: heroicmini
+        working-directory: config/heroicmini
         run: |
           ASEMIC_TOKEN=${{ secrets.ASEMIC_TOKEN }} asemic validate
