@@ -1,4 +1,4 @@
-table_name: "gendemo.ua_login"
+table_name: "gendemo.ua_purchase"
 user_id_column: user_id
 timestamp_column: time
 date_column: date
@@ -25,13 +25,17 @@ columns:
     data_type: STRING
     can_group_by: true
 
-  - id: application_version
-    data_type: STRING
-    can_group_by: true
+  - id: revenue
+    data_type: NUMBER
 
 kpis:
-  - id: login_count
+  - id: transaction_count
     sql:
-      login_count:
+      transaction_count:
         select: "COUNT(*)"
+
+  - id: revenue
+    sql:
+      revenue:
+        select: "SUM({revenue})"
 

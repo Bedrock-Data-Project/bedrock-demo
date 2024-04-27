@@ -1,14 +1,14 @@
 category: Revenue
 kpis:
-  - id: gross_revenue_usd
+  - id: revenue
     label: IAP Revenue Gross USD
     recommended: true
     unit: { symbol: "$", is_prefix: true }
     sql:
-      gross_revenue_usd:
-        select: "SUM({gross_revenue_usd})"
+      revenue:
+        select: "SUM({revenue})"
     x_axis:
-      - _date
+      - date
       - cohort_day
 
   #  - id: daily_purchase_rate
@@ -27,20 +27,20 @@ kpis:
 
   - id: arpdau_gross
     label: IAP ARPDAU Gross
-    formula: 'SAFE_DIVIDE({gross_revenue_usd}, {dau})'
+    formula: 'SAFE_DIVIDE({revenue}, {dau})'
     recommended: true
     unit: { symbol: "$", is_prefix: true }
     x_axis:
-      - _date
+      - date
       - cohort_day
 
   - id: arppu_gross
     label: IAP ARPPU Gross
-    formula: 'SAFE_DIVIDE*({gross_revenue_usd}, {daily_payers})'
+    formula: 'SAFE_DIVIDE*({revenue}, {daily_payers})'
     recommended: true
     unit: { symbol: "$", is_prefix: true }
     x_axis:
-      - _date
+      - date
       - cohort_day
 
   #  - id: avg_transaction_gross
@@ -65,7 +65,7 @@ kpis:
       daily_payers:
         select: "SUM({daily_payers})"
     x_axis:
-      - _date
+      - date
       - cohort_day
   #
   #  - id: total_payers
@@ -77,21 +77,21 @@ kpis:
 
   - id: ltv
     label: LTV Gross
-    formula: 'SAFE_DIVIDE({gross_revenue_usd_total}, {cohort_size})'
+    formula: 'SAFE_DIVIDE({revenue_total}, {cohort_size})'
     unit: { symbol: "$", is_prefix: true }
     sql:
-      gross_revenue_usd_total:
-        select: "SUM({gross_revenue_usd_total})"
+      revenue_total:
+        select: "SUM({revenue_total})"
     x_axis:
       - cohort_day
 
 cohorted_daily_kpis:
   - id: ltv_gross_d{}
-    formula: 'SAFE_DIVIDE({gross_revenue_usd_total}, {cohort_size})'
+    formula: 'SAFE_DIVIDE({revenue_total}, {cohort_size})'
     unit: { symbol: "%", is_prefix: false }
     sql:
-      gross_revenue_usd_total:
-        select: "SUM({gross_revenue_usd_total})"
+      revenue_total:
+        select: "SUM({revenue_total})"
         where: "{cohort_day} = {}"
       cohort_size:
         select: "SUM({cohort_size})"

@@ -1,49 +1,38 @@
-table_name: "heroicmini_main.registration"
-date_column: date_
+table_name: "gendemo.ua_registration"
 user_id_column: user_id
-timestamp_column: transaction_timestamp
+timestamp_column: time
+date_column: date
 
 columns:
-  - id: _date
+  - id: user_id
+    data_type: INTEGER
+
+  - id: time
+    data_type: DATETIME
+
+  - id: date
     data_type: DATE
     can_filter: false
 
-  - id: user_id
+  - id: session_id
     data_type: STRING
-
-  - id: transaction_timestamp
-    data_type: DATETIME
-
-  - id: gross_revenue_usd
-    data_type: NUMBER
-
-  - id: country
-    data_type: STRING
-    can_group_by: true
 
   - id: platform
     data_type: STRING
     can_group_by: true
 
-computed_columns:
-  - column:
-      data_type: DATE
-      can_group_by: true
-      id: date_
-    formula: "{_date}"
+  - id: country
+    data_type: STRING
+    can_group_by: true
 
-enrichments:
-  - datasource: country
-    on:
-      - source: country
-        target: country_name
+  - id: application_version
+    data_type: STRING
+    can_group_by: true
+
 kpis:
-  - id: transaction_count
+  - id: registration_count
     sql:
-      transaction_count:
+      registration_count:
         select: "COUNT(*)"
 
-  - id: gross_revenue_usd
-    sql:
-      gross_revenue_usd:
-        select: "SUM({gross_revenue_usd})"
+

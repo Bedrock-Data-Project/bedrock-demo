@@ -5,7 +5,7 @@ kpis:
       cohort_size:
         select: "SUM({cohort_size})"
     x_axis:
-      - _date
+      - date
       - cohort_day
 
   - id: registrations
@@ -14,5 +14,5 @@ kpis:
         select: "SUM({cohort_size})"
         where: "{cohort_day} = 0"
     x_axis:
-      - _date
+      - date
       - cohort_day

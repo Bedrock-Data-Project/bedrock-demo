@@ -1,4 +1,4 @@
-table_name: "gendemo.ua_login"
+table_name: "gendemo.ua_level_played"
 user_id_column: user_id
 timestamp_column: time
 date_column: date
@@ -17,21 +17,13 @@ columns:
   - id: session_id
     data_type: STRING
 
-  - id: platform
-    data_type: STRING
-    can_group_by: true
-
-  - id: country
-    data_type: STRING
-    can_group_by: true
-
-  - id: application_version
+  - id: level
     data_type: STRING
     can_group_by: true
 
 kpis:
-  - id: login_count
+  - id: level_played_count
     sql:
-      login_count:
+      level_played_count:
         select: "COUNT(*)"
 

@@ -3,11 +3,11 @@ kpis:
   - id: dau
     label: DAU
     x_axis:
-     - _date
+     - date
     recommended: true
     sql:
       dau:
-        select: "SAFE_DIVIDE(SUM({dau}), COUNT(DISTINCT {_date}))"
+        select: "SAFE_DIVIDE(SUM({dau}), COUNT(DISTINCT {date}))"
     total: AVG
 
   - id: dau
@@ -21,12 +21,12 @@ kpis:
   - id: mdau
     label: mDAU
     x_axis:
-     - _date
+     - date
     recommended: true
     sql:
       mdau:
-        select: "SAFE_DIVIDE(SUM({dau}), COUNT(DISTINCT {_date}))"
-        where: "{payer}"
+        select: "SAFE_DIVIDE(SUM({dau}), COUNT(DISTINCT {date}))"
+        where: "{is_payer}"
     total: AVG
   - id: mdau
     x_axis:
@@ -34,33 +34,16 @@ kpis:
     sql:
       mdau:
         select: "SUM({dau})"
-        where: "{payer}"
-
-  - id: wau
-    label: WAU
-    x_axis:
-     - _date
-    recommended: true
-    sql:
-      wau:
-        select: "SAFE_DIVIDE(SUM({wau}), COUNT(DISTINCT {_date}))"
-    total: AVG
-  - id: wau
-    x_axis:
-     - cohort_day
-    recommended: true
-    sql:
-      wau:
-        select: "SUM({wau})"
+        where: "{is_payer}"
 
   - id: mau
     label: MAU
     x_axis:
-     - _date
+     - date
     recommended: true
     sql:
       mau:
-        select: "SAFE_DIVIDE(SUM({mau}), COUNT(DISTINCT {_date}))"
+        select: "SAFE_DIVIDE(SUM({mau}), COUNT(DISTINCT {date}))"
     total: AVG
   - id: mau
     x_axis:
@@ -74,15 +57,15 @@ kpis:
     label: MAU Lost
     sql:
       mau_lost:
-        select: "SUM(if({_date} - {last_logindate_} = interval 29 day, 1, 0))"
+        select: "SUM(if({date} - {last_login_date} = interval 29 day, 1, 0))"
     x_axis:
-      - _date
+      - date
       - cohort_day
   #
   #  - id: mau_reactivated
   #    sql:
   #      mau_reactivated:
-  #        select: "SUM(if({_date} - {previous_login_day} >= interval 29 day and {last_login_day} = {_date}, 1, 0))"
+  #        select: "SUM(if({date} - {previous_login_day} >= interval 29 day and {last_login_day} = {date}, 1, 0))"
   #    x_axis:
   #      date_: { x: sum, y: sum }
   #      cohort_day: { x: sum, y: sum }
@@ -91,7 +74,7 @@ kpis:
     formula: 'SAFE_DIVIDE({dau} * 100, {mau})'
     unit: { symbol: "%", is_prefix: false }
     x_axis:
-      - _date
+      - date
       - cohort_day
 
   - id: retention
@@ -99,38 +82,6 @@ kpis:
     formula: 'SAFE_DIVIDE({dau} * 100, {cohort_size})'
     unit: { symbol: "%", is_prefix: false }
     x_axis:
-      - cohort_day
-
-  - id: avg_sessions
-    formula: 'SAFE_DIVIDE({sessions_count}, {dau})'
-    sql:
-      sessions_count:
-        select: "SUM({sessions_count})"
-
-    x_axis:
-      - _date
-      - cohort_day
-
-  - id: avg_session_length
-    formula: 'SAFE_DIVIDE({playtime}, {sessions_count})'
-    unit: { symbol: "min", is_prefix: false }
-    sql:
-      playtime:
-        select: SUM({playtime})
-      sessions_count:
-        select: "SUM({sessions_count})"
-    x_axis:
-      - _date
-      - cohort_day
-
-  - id: avg_playtime
-    formula: 'SAFE_DIVIDE({playtime}, {dau})'
-    unit: { symbol: "min", is_prefix: false }
-    sql:
-      playtime:
-        select: SUM({playtime})
-    x_axis:
-      - _date
       - cohort_day
 
 cohorted_daily_kpis:
