@@ -77,22 +77,22 @@ kpis:
 
   - id: ltv
     label: LTV Gross
-    formula: 'SAFE_DIVIDE({revenue_total}, {cohort_size})'
+    formula: 'SAFE_DIVIDE({total_revenue}, {cohort_size})'
     unit: { symbol: "$", is_prefix: true }
     sql:
-      revenue_total:
-        select: "SUM({revenue_total})"
+      total_revenue:
+        select: "SUM({total_revenue})"
     x_axis:
       - cohort_day
 
 cohorted_daily_kpis_days: [1, 2, 3, 4, 5, 6, 7, 14, 28, 30, 60, 90, 180, 365]
 cohorted_daily_kpis:
   - id: ltv_gross_d{}
-    formula: 'SAFE_DIVIDE({revenue_total}, {cohort_size})'
+    formula: 'SAFE_DIVIDE({total_revenue}, {cohort_size})'
     unit: { symbol: "%", is_prefix: false }
     sql:
-      revenue_total:
-        select: "SUM({revenue_total})"
+      total_revenue:
+        select: "SUM({total_revenue})"
         where: "{cohort_day} = {}"
       cohort_size:
         select: "SUM({cohort_size})"
