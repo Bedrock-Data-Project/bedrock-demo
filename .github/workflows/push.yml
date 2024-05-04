@@ -20,4 +20,5 @@ jobs:
           export ASEMIC_API_TOKEN=${{ secrets.ASEMIC_TOKEN }}
           export ASEMIC_APP_ID_DIR=config/heroicmini
           ls -lah
+          file asemic-cli
           ./asemic-cli semantic-layer push
