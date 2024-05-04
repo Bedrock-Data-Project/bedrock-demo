@@ -21,4 +21,5 @@ jobs:
       - name: Run the package
         working-directory: config/heroicmini
         run: |
-          ASEMIC_API_TOKEN=${{ secrets.ASEMIC_TOKEN }} asemic-cli semantic-layer validate
+          export ASEMIC_API_TOKEN=${{ secrets.ASEMIC_TOKEN }} 
+          ./asemic-cli semantic-layer validate
