@@ -13,23 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
+      - name: Download asemic-cli
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple asemic
-
-      - name: Save secret to file
-        run: |
-          cat << EOF > config/heroicmini/database.yml
-          ${{ secrets.HEROICMINI_DATABASE }}
-          EOF
+          curl -o asemic-cli https://github.com/Bedrock-Data-Project/asemic-cli/releases/download/latest/asemic-cli-ubuntu-latest
+          chmod +x asemic-cli
 
       - name: Run the package
         working-directory: config/heroicmini
         run: |
-          ASEMIC_TOKEN=${{ secrets.ASEMIC_TOKEN }} asemic push
+          ASEMIC_API_TOKEN=${{ secrets.ASEMIC_TOKEN }} asemic-cli semantic-layer push
