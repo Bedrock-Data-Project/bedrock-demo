@@ -13,11 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Download asemic-cli
-        run: |
-          curl -o asemic-cli https://github.com/Bedrock-Data-Project/asemic-cli/releases/download/latest/asemic-cli-ubuntu-latest
-          chmod +x asemic-cli
-
       - name: Push
         run: |
           curl -o asemic-cli https://github.com/Bedrock-Data-Project/asemic-cli/releases/download/latest/asemic-cli-ubuntu-latest
