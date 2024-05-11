@@ -36,7 +36,7 @@ kpis:
 
   - id: arppu_gross
     label: IAP ARPPU Gross
-    formula: 'SAFE_DIVIDE*({revenue}, {daily_payers})'
+    formula: 'SAFE_DIVIDE({revenue}, {daily_payers})'
     recommended: true
     unit: { symbol: "$", is_prefix: true }
     x_axis:
