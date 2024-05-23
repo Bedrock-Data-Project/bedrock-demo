@@ -1,0 +1,45 @@
+registration_columns: []
+
+user_action_columns:
+  - column:
+      data_type: NUMBER
+      id: revenue
+    user_action_datasource: purchase
+    aggregation_expression: "SUM({gross_revenue_usd})"
+    missing_value: 0
+
+  - column:
+      data_type: NUMBER
+      id: revenue_28d
+    user_action_datasource: purchase
+    aggregation_expression: "SUM({gross_revenue_usd})"
+    missing_value: 0
+    relative_days_interval: [-27, 0]
+
+  - column:
+      data_type: INTEGER
+      id: daily_payers
+    user_action_datasource: purchase
+    aggregation_expression: "1"
+    missing_value: 0
+
+total_columns:
+  - column:
+      data_type: NUMBER
+      id: total_revenue
+    source_column: revenue
+    merge_expression: "{__current_value} + {__total}"
+
+  - column:
+      data_type: BOOLEAN
+      can_group_by: true
+      id: is_payer
+    aggregation_expression: "MAX({is_payer})"
+    missing_value: "FALSE"
+    merge_expression: "{__total} OR {__current_value}"
+
+computed_columns: []
+
+
+
+

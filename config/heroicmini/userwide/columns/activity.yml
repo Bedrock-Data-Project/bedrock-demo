@@ -1,0 +1,53 @@
+registration_columns: []
+
+user_action_columns:
+  - column:
+      data_type: INTEGER
+      id: dau
+      label: DAU
+    user_action_datasource: login
+    aggregation_expression: "1"
+    missing_value: 0
+
+  - column:
+      data_type: INTEGER
+      id: dau_yesterday
+      label: DAU yesterday
+    user_action_datasource: login
+    aggregation_expression: "1"
+    missing_value: 0
+    relative_days_interval: [-1, -1]
+
+  - column:
+      data_type: INTEGER
+      id: mau
+      label: MAU
+    user_action_datasource: login
+    aggregation_expression: "1"
+    missing_value: 0
+    relative_days_interval: [-29, 0]
+
+total_columns:
+  - column:
+      data_type: DATE
+      id: last_login_date
+      can_group_by: true
+    user_action_datasource: login
+    aggregation_expression: "MAX({date_})"
+    missing_value: "NULL"
+    merge_expression: "COALESCE({__current_value}, {__total})"
+
+  - column:
+      data_type: STRING
+      id: last_login_country
+      can_group_by: true
+    user_action_datasource: login
+    aggregation_expression: "MAX({date_})"
+    missing_value: "NULL"
+    merge_expression: "COALESCE({__current_value}, {__total})"
+
+computed_columns: []
+
+
+
+

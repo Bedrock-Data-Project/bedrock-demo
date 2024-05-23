@@ -61,14 +61,6 @@ kpis:
     x_axis:
       - date
       - cohort_day
-  #
-  #  - id: mau_reactivated
-  #    sql:
-  #      mau_reactivated:
-  #        select: "SUM(if({date} - {previous_login_day} >= interval 29 day and {last_login_day} = {date}, 1, 0))"
-  #    x_axis:
-  #      date_: { x: sum, y: sum }
-  #      cohort_day: { x: sum, y: sum }
 
   - id: stickiness
     formula: 'SAFE_DIVIDE({dau} * 100, {mau})'
