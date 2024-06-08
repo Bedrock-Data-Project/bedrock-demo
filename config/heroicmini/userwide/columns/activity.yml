@@ -16,7 +16,7 @@ user_action_columns:
     user_action_datasource: login
     aggregation_expression: "1"
     missing_value: 0
-    relative_days_interval: [-1, -1]
+    window: [-1, -1]
 
   - column:
       data_type: INTEGER
@@ -25,26 +25,25 @@ user_action_columns:
     user_action_datasource: login
     aggregation_expression: "1"
     missing_value: 0
-    relative_days_interval: [-29, 0]
+    window: [-29, 0]
+    window_aggregation: sum
+
+  - column:
+      data_type: STRING
+      id: _login_country
+      can_filter: false
+      can_group_by: false
+    user_action_datasource: login
+    aggregation_expression: "MAX({country})"
+    can_materialize: false
 
 total_columns:
-  - column:
-      data_type: DATE
-      id: last_login_date
-      can_group_by: true
-    user_action_datasource: login
-    aggregation_expression: "MAX({date_})"
-    missing_value: "NULL"
-    merge_expression: "COALESCE({__current_value}, {__total})"
-
   - column:
       data_type: STRING
       id: last_login_country
       can_group_by: true
-    user_action_datasource: login
-    aggregation_expression: "MAX({date_})"
-    missing_value: "NULL"
-    merge_expression: "COALESCE({__current_value}, {__total})"
+    source_column: _login_country
+    merge_expression: "COALESCE({__current}, {__total})"
 
 computed_columns: []
 

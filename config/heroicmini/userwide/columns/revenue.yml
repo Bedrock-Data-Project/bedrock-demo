@@ -5,16 +5,17 @@ user_action_columns:
       data_type: NUMBER
       id: revenue
     user_action_datasource: purchase
-    aggregation_expression: "SUM({gross_revenue_usd})"
+    aggregation_expression: "SUM({revenue})"
     missing_value: 0
 
   - column:
       data_type: NUMBER
       id: revenue_28d
     user_action_datasource: purchase
-    aggregation_expression: "SUM({gross_revenue_usd})"
+    aggregation_expression: "SUM({revenue})"
     missing_value: 0
-    relative_days_interval: [-27, 0]
+    window: [-27, 0]
+    window_aggregation: sum
 
   - column:
       data_type: INTEGER
@@ -28,15 +29,14 @@ total_columns:
       data_type: NUMBER
       id: total_revenue
     source_column: revenue
-    merge_expression: "{__current_value} + {__total}"
+    merge_expression: "{__current} + COALESCE({__total}, 0)"
 
   - column:
       data_type: BOOLEAN
       can_group_by: true
       id: is_payer
-    aggregation_expression: "MAX({is_payer})"
-    missing_value: "FALSE"
-    merge_expression: "{__total} OR {__current_value}"
+    source_column: revenue
+    merge_expression: "COALESCE({__total}, FALSE) OR ({__current} > 0)"  # TODO use transaction count
 
 computed_columns: []
 
