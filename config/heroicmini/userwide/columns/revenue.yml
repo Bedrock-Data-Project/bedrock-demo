@@ -36,7 +36,7 @@ total_columns:
       can_group_by: true
       id: is_payer
     source_column: revenue
-    merge_expression: "COALESCE({__total}, FALSE) OR ({__current} > 0)"  # TODO use transaction count
+    merge_expression: "COALESCE({__total}, FALSE) OR ({__current} > 0)"
 
 computed_columns: []
 

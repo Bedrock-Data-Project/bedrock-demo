@@ -1,18 +1,23 @@
 table_name: "gendemo.ua_purchase"
-user_id_column: user_id
-timestamp_column: time
-date_column: date
+tags:
+  - payment_transaction_datasource
 
 columns:
   - id: user_id
     data_type: INTEGER
+    tags:
+      - user_id_column
 
   - id: time
     data_type: DATETIME
+    tags:
+      - timestamp_column
 
   - id: date
     data_type: DATE
     can_filter: false
+    tags:
+      - date_column
 
   - id: session_id
     data_type: STRING
@@ -27,6 +32,8 @@ columns:
 
   - id: revenue
     data_type: NUMBER
+    tags:
+      - transaction_amount_column
 
 kpis:
   - id: transaction_count

@@ -1,18 +1,23 @@
 table_name: "gendemo.ua_registration"
-user_id_column: user_id
-timestamp_column: time
-date_column: date
+tags:
+  - registration_datasource
 
 columns:
   - id: user_id
     data_type: INTEGER
+    tags:
+      - user_id_column
 
   - id: time
     data_type: DATETIME
+    tags:
+      - timestamp_column
 
   - id: date
     data_type: DATE
     can_filter: false
+    tags:
+      - date_column
 
   - id: session_id
     data_type: STRING
@@ -20,14 +25,20 @@ columns:
   - id: platform
     data_type: STRING
     can_group_by: true
+    tags:
+      - platform_column
 
   - id: country
     data_type: STRING
     can_group_by: true
+    tags:
+      - country_column
 
-  - id: application_version
+  - id: build_version
     data_type: STRING
     can_group_by: true
+    tags:
+      - build_version_column
 
 kpis:
   - id: registration_count

@@ -1,3 +1,1 @@
 base_table_prefix: "gendemo.user_wide"
-registrations_user_action_datasource: registration
-activity_user_action_datasource: login
