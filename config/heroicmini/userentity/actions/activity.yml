@@ -1,17 +1,17 @@
-table_name: "gendemo.ua_registration"
+table_name: "gendemo.ua_login"
 tags:
-  - registration_datasource
+  - activity_action
 
 columns:
   - id: user_id
     data_type: INTEGER
     tags:
-      - user_id_column
+      - entity_id_column
 
   - id: time
     data_type: DATETIME
     tags:
-      - timestamp_column
+      - action_timestamp_column
 
   - id: date
     data_type: DATE
@@ -21,29 +21,25 @@ columns:
 
   - id: session_id
     data_type: STRING
+    tags:
+      - user_entity.session_id_column
 
   - id: platform
     data_type: STRING
     can_group_by: true
     tags:
-      - platform_column
+      - user_entity.platform_column
 
   - id: country
     data_type: STRING
     can_group_by: true
     tags:
-      - country_column
+      - user_entity.platform_column
 
   - id: build_version
     data_type: STRING
     can_group_by: true
     tags:
-      - build_version_column
-
-kpis:
-  - id: registration_count
-    sql:
-      registration_count:
-        select: "COUNT(*)"
+      - generate_last_value_property
 
 

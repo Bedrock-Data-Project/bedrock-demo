@@ -1,11 +1,11 @@
-registration_columns: []
+first_appearance_properties: []
 
-user_action_columns:
+action_properties:
   - column:
       data_type: INTEGER
       id: dau
       label: DAU
-    user_action_datasource: login
+    action_datasource: login
     aggregation_expression: "1"
     missing_value: 0
 
@@ -13,7 +13,7 @@ user_action_columns:
       data_type: INTEGER
       id: dau_yesterday
       label: DAU yesterday
-    user_action_datasource: login
+    action_datasource: login
     aggregation_expression: "1"
     missing_value: 0
     window: [-1, -1]
@@ -22,7 +22,7 @@ user_action_columns:
       data_type: INTEGER
       id: mau
       label: MAU
-    user_action_datasource: login
+    action_datasource: login
     aggregation_expression: "1"
     missing_value: 0
     window: [-29, 0]
@@ -33,11 +33,11 @@ user_action_columns:
       id: _login_country
       can_filter: false
       can_group_by: false
-    user_action_datasource: login
+    action_datasource: login
     aggregation_expression: "MAX({country})"
     can_materialize: false
 
-total_columns:
+total_properties:
   - column:
       data_type: STRING
       id: last_login_country
@@ -45,7 +45,7 @@ total_columns:
     source_column: _login_country
     merge_expression: "COALESCE({__current}, {__total})"
 
-computed_columns: []
+computed_properties: []
 
 
 

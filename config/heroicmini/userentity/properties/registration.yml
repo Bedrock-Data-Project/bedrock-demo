@@ -1,4 +1,4 @@
-registration_columns:
+first_appearance_properties:
   - column:
       data_type: STRING
       can_group_by: true
@@ -11,10 +11,10 @@ registration_columns:
       id: registration_platform
     source_column: platform
 
-user_action_columns: []
-total_columns: []
+action_properties: []
+total_properties: []
 
-computed_columns:
+computed_properties:
   - column:
       data_type: DATE
       can_group_by: true

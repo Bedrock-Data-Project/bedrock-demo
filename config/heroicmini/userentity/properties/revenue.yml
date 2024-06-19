@@ -1,17 +1,17 @@
-registration_columns: []
+first_appearance_properties: []
 
-user_action_columns:
+action_properties:
   - column:
       data_type: NUMBER
       id: revenue
-    user_action_datasource: purchase
+    action_datasource: purchase
     aggregation_expression: "SUM({revenue})"
     missing_value: 0
 
   - column:
       data_type: NUMBER
       id: revenue_28d
-    user_action_datasource: purchase
+    action_datasource: purchase
     aggregation_expression: "SUM({revenue})"
     missing_value: 0
     window: [-27, 0]
@@ -20,11 +20,11 @@ user_action_columns:
   - column:
       data_type: INTEGER
       id: daily_payers
-    user_action_datasource: purchase
+    action_datasource: purchase
     aggregation_expression: "1"
     missing_value: 0
 
-total_columns:
+total_properties:
   - column:
       data_type: NUMBER
       id: total_revenue
@@ -38,7 +38,7 @@ total_columns:
     source_column: revenue
     merge_expression: "COALESCE({__total}, FALSE) OR ({__current} > 0)"
 
-computed_columns: []
+computed_properties: []
 
 
 
