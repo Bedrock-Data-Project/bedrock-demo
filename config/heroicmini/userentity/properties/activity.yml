@@ -1,0 +1,111 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_properties.json
+first_appearance_properties: []
+action_properties:
+- column:
+    id: dau
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    label: DAU
+  action_logical_table: login
+  select: 1
+  missing_value: 0
+- column:
+    id: dau_date
+    data_type: DATE
+    can_filter: false
+    can_group_by: false
+    label: DAU Date
+  action_logical_table: login
+  select: "MAX({date})"
+  can_materialize: false
+- column:
+    id: login_country
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+  action_logical_table: login
+  select: "MAX({country})"
+- column:
+    id: login_platform
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+  action_logical_table: login
+  select: "MAX({platform})"
+- column:
+    id: login_build_version
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+  action_logical_table: login
+  select: "MAX({build_version})"
+sliding_window_properties:
+- column:
+    id: dau_yesterday
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: false
+    label: DAU Yesterday
+  source_property: dau
+  function: sum
+  relative_days_from: -1
+  relative_days_to: -1
+- column:
+    id: active_last_7_days
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+  source_property: dau
+  function: sum
+  relative_days_from: -6
+  relative_days_to: 0
+- column:
+    id: active_last_28_days
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+  source_property: dau
+  function: sum
+  relative_days_from: -27
+  relative_days_to: 0
+- column:
+    id: mau
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    label: MAU
+  source_property: dau
+  function: max
+  relative_days_from: -29
+  relative_days_to: 0
+total_properties:
+- column:
+    id: last_login_date
+    data_type: DATE
+    can_filter: true
+    can_group_by: true
+  source_property: dau_date
+  function: last_value
+- column:
+    id: last_login_country
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+  source_property: login_country
+  function: last_value
+- column:
+    id: last_login_platform
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+  source_property: login_platform
+  function: last_value
+- column:
+    id: last_login_build_version
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+  source_property: login_build_version
+  function: last_value
+computed_properties: []
