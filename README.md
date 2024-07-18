@@ -2,4 +2,4 @@
 
 Github secrets:
 
-ASEMIC_TOKEN: <find on asemic profile page>
+ASEMIC_API_TOKEN: <find on asemic profile page>
