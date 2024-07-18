@@ -19,4 +19,4 @@ jobs:
           chmod +x asemic-cli
           export ASEMIC_API_TOKEN=${{ secrets.ASEMIC_TOKEN }}
           export ASEMIC_APP_ID_DIR=config/heroicmini
-          ./asemic-cli semantic-layer validate
+          ./asemic-cli config validate
