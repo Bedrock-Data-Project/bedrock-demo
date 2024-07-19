@@ -1,0 +1,37 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/action_logical_table.json
+---
+table_name: gendemo.ua_purchase
+tags:
+ - payment_transaction_action
+columns:
+ -
+  id: user_id
+  data_type: INTEGER
+  tags:
+   - entity_id_column
+ -
+  id: time
+  data_type: DATETIME
+  tags:
+   - action_timestamp_column
+ -
+  id: session_id
+  data_type: STRING
+ -
+  id: platform
+  data_type: STRING
+ -
+  id: country
+  data_type: STRING
+ -
+  id: revenue
+  data_type: NUMBER
+  tags:
+   - transaction_amount_column
+ -
+  id: date
+  data_type: DATE
+  tags:
+   - date_column
+computed_columns: []
+enrichments: []

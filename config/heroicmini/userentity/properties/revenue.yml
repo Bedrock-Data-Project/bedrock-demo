@@ -1,0 +1,59 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_properties.json
+first_appearance_properties: []
+action_properties:
+- column:
+    id: revenue
+    data_type: NUMBER
+    can_filter: true
+    can_group_by: false
+  action_logical_table: transaction
+  select: "SUM({revenue})"
+  missing_value: 0
+- column:
+    id: daily_payers
+    data_type: NUMBER
+    can_filter: true
+    can_group_by: false
+  action_logical_table: transaction
+  select: 1
+  missing_value: 0
+- column:
+    id: transaction_count
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: false
+  action_logical_table: transaction
+  select: COUNT(*)
+  missing_value: 0
+sliding_window_properties:
+- column:
+    id: revenue_28_days
+    data_type: NUMBER
+    can_filter: true
+    can_group_by: false
+  source_property: revenue
+  function: sum
+  relative_days_from: -27
+  relative_days_to: 0
+total_properties:
+- column:
+    id: total_revenue
+    data_type: NUMBER
+    can_filter: true
+    can_group_by: false
+  source_property: revenue
+  function: sum
+- column:
+    id: is_payer
+    data_type: BOOLEAN
+    can_filter: true
+    can_group_by: true
+  source_property: is_daily_payer
+  function: max
+computed_properties:
+- column:
+    id: is_daily_payer
+    data_type: BOOLEAN
+    can_filter: true
+    can_group_by: true
+  formula: "{daily_payers} > 0"

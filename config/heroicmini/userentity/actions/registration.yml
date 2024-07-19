@@ -1,0 +1,80 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/action_logical_table.json
+---
+table_name: gendemo.ua_registration
+tags:
+ - registration_action
+columns:
+ -
+  id: user_id
+  data_type: INTEGER
+  tags:
+   - entity_id_column
+ -
+  id: time
+  data_type: DATETIME
+  tags:
+   - action_timestamp_column
+ -
+  id: session_id
+  data_type: STRING
+ -
+  id: engagement
+  data_type: NUMBER
+ -
+  id: payment_propensity
+  data_type: NUMBER
+ -
+  id: skill
+  data_type: NUMBER
+ -
+  id: platform
+  data_type: STRING
+  tags:
+   - user_entity.platform_column
+ -
+  id: application_version
+  data_type: INTEGER
+ -
+  id: build_version
+  data_type: STRING
+  tags:
+   - user_entity.application_build_version_column
+ -
+  id: country
+  data_type: STRING
+  tags:
+   - user_entity.country_column
+ -
+  id: language
+  data_type: STRING
+ -
+  id: manufacturer
+  data_type: STRING
+ -
+  id: model
+  data_type: STRING
+ -
+  id: os_version
+  data_type: STRING
+ -
+  id: memory_size
+  data_type: STRING
+ -
+  id: screen_width
+  data_type: INTEGER
+ -
+  id: screen_height
+  data_type: INTEGER
+ -
+  id: screen_dpi
+  data_type: INTEGER
+ -
+  id: device_language
+  data_type: INTEGER
+ -
+  id: date
+  data_type: DATE
+  tags:
+   - date_column
+computed_columns: []
+enrichments: []
