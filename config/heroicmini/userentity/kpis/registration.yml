@@ -7,4 +7,3 @@ kpis:
   x_axis:
   - date
   - cohort_day
-  total_function: avg

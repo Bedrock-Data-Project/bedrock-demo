@@ -30,7 +30,6 @@ kpis:
   x_axis:
   - date
   - cohort_day
-  total_function: avg
 - id: mdau
   label: mDAU
   select: "{kpi.dau}"

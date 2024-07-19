@@ -24,7 +24,6 @@ kpis:
   x_axis:
   - date
   - cohort_day
-  total_function: avg
 - id: ltv
   label: LTV
   select: "SAFE_DIVIDE(SUM({property.total_revenue}), SUM({property.cohort_size}))"
@@ -33,7 +32,6 @@ kpis:
     is_prefix: true
   x_axis:
   - cohort_day
-  total_function: avg
 - id: revenue
   select: "SUM({property.revenue})"
   unit:
@@ -42,7 +40,6 @@ kpis:
   x_axis:
   - date
   - cohort_day
-  total_function: avg
 cohorted_daily_kpis_days:
 - 1
 - 2
