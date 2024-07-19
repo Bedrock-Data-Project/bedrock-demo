@@ -17,6 +17,6 @@ jobs:
         run: |
           curl -L -o asemic-cli https://github.com/Bedrock-Data-Project/asemic-cli/releases/latest/download/asemic-cli-ubuntu
           chmod +x asemic-cli
-          export ASEMIC_API_TOKEN=${{ secrets.ASEMIC_TOKEN }}
+          export ASEMIC_API_TOKEN=${{ secrets.ASEMIC_API_TOKEN }}
           export ASEMIC_APP_ID_DIR=config/heroicmini
           ./asemic-cli config push
