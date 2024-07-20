@@ -3,65 +3,29 @@ category: Engagement
 kpis:
 - id: arpdau
   label: ARPDAU
-  select: "SAFE_DIVIDE({kpi.revenue}, {kpi.dau})"
-  unit:
-    symbol: $
-    is_prefix: true
-  x_axis:
-  - date
-  - cohort_day
+  select: SAFE_DIVIDE({kpi.revenue}, {kpi.dau})
+  unit: {symbol: $, is_prefix: true}
+  x_axis: [date, cohort_day]
 - id: arppu
   label: ARPPU
-  select: "SAFE_DIVIDE({kpi.revenue}, {kpi.daily_payers})"
-  unit:
-    symbol: $
-    is_prefix: true
-  x_axis:
-  - date
-  - cohort_day
+  select: SAFE_DIVIDE({kpi.revenue}, {kpi.daily_payers})
+  unit: {symbol: $, is_prefix: true}
+  x_axis: [date, cohort_day]
 - id: daily_payers
-  select: "SUM({property.daily_payers})"
-  x_axis:
-  - date
-  - cohort_day
-  total_function: avg
+  select: SUM({property.daily_payers})
+  x_axis: [date, cohort_day]
 - id: ltv
   label: LTV
-  select: "SAFE_DIVIDE(SUM({property.total_revenue}), SUM({property.cohort_size}))"
-  unit:
-    symbol: $
-    is_prefix: true
-  x_axis:
-  - cohort_day
-  total_function: avg
+  select: SAFE_DIVIDE(SUM({property.total_revenue}), SUM({property.cohort_size}))
+  unit: {symbol: $, is_prefix: true}
+  x_axis: [cohort_day]
 - id: revenue
-  select: "SUM({property.revenue})"
-  unit:
-    symbol: $
-    is_prefix: true
-  x_axis:
-  - date
-  - cohort_day
-  total_function: avg
-cohorted_daily_kpis_days:
-- 1
-- 2
-- 3
-- 4
-- 5
-- 6
-- 7
-- 14
-- 28
-- 30
-- 60
-- 90
-- 180
-- 365
+  select: SUM({property.revenue})
+  unit: {symbol: $, is_prefix: true}
+  x_axis: [date, cohort_day]
+cohorted_daily_kpis_days: [1, 2, 3, 4, 5, 6, 7, 14, 28, 30, 60, 90, 180, 365]
 cohorted_daily_kpis:
-- id: "ltv_d{}"
-  select: "SAFE_DIVIDE(SUM({property.total_revenue}) * 100, SUM({property.cohort_size}))"
-  where: "{property.cohort_day} = {}"
-  unit:
-    symbol: $
-    is_prefix: true
+- id: ltv_d{}
+  select: SAFE_DIVIDE(SUM({property.total_revenue}) * 100, SUM({property.cohort_size}))
+  where: '{property.cohort_day} = {}'
+  unit: {symbol: $, is_prefix: true}
