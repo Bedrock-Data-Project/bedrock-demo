@@ -1,48 +1,39 @@
 # $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_kpis.json
-category: Engagement
 kpis:
-- id: dau
-  label: DAU
-  select: SUM({property.dau})
-  x_axis: [date]
-  total_function: avg
-- id: dau
-  label: DAU
-  select: SUM({property.dau})
-  x_axis: [cohort_day]
-- id: mau
-  label: MAU
-  select: SUM({property.mau})
-  x_axis: [date]
-  total_function: avg
-- id: mau
-  label: MAU
-  select: SUM({property.mau})
-  x_axis: [cohort_day]
-- id: mau_lost
-  label: MAU Lost
-  select: SUM(if({property.date} - {property.last_login_date} = interval 29 day, 1,
-    0))
-  x_axis: [date, cohort_day]
-- id: mdau
-  label: mDAU
-  select: '{kpi.dau}'
-  where: '{property.is_payer}'
-  x_axis: [date]
-  total_function: avg
-- id: mdau
-  label: mDAU
-  select: '{kpi.dau}'
-  where: '{property.is_payer}'
-  x_axis: [cohort_day]
-- id: retention
-  recommended: true
-  select: SAFE_DIVIDE({kpi.dau} * 100, SUM({property.cohort_size}))
-  unit: {symbol: '%', is_prefix: false}
-  x_axis: [cohort_day]
-cohorted_daily_kpis_days: [1, 2, 3, 4, 5, 6, 7, 14, 28, 30, 60, 90, 180, 365]
-cohorted_daily_kpis:
-- id: retention_d{}
-  select: SAFE_DIVIDE({kpi.dau} * 100, SUM({property.cohort_size}))
-  where: '{property.cohort_day} = {}'
-  unit: {symbol: '%', is_prefix: false}
+  dau:
+    label: DAU
+    select: SUM({property.active_today})
+    x_axis:
+      date: {total_function: avg}
+      cohort_day: {}
+  mau:
+    label: MAU
+    select: SUM({property.active_last_28_days})
+    x_axis:
+      date: {total_function: avg}
+      cohort_day: {}
+  mau_lost:
+    label: MAU Lost
+    select: SUM(if({property.date} - {property.last_login_date} = interval 27 day, 1, 0))
+    x_axis:
+      date: {}
+      cohort_day: {}
+  mdau:
+    label: mDAU
+    select: '{kpi.dau}'
+    where: '{property.is_payer}'
+    x_axis:
+      date: {total_function: avg}
+      cohort_day: {}
+  retention:
+    select: SAFE_DIVIDE({kpi.dau} * 100, SUM({property.cohort_size}))
+    unit: {symbol: '%', is_prefix: false}
+    x_axis:
+      cohort_day: {}
+  retention_d{}:
+    select: SAFE_DIVIDE({kpi.dau} * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = {}'
+    unit: {symbol: '%', is_prefix: false}
+    x_axis:
+      date: {total_function: avg}
+    template: cohort_day

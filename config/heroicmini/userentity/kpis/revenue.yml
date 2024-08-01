@@ -1,31 +1,41 @@
 # $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_kpis.json
-category: Engagement
 kpis:
-- id: arpdau
-  label: ARPDAU
-  select: SAFE_DIVIDE({kpi.revenue}, {kpi.dau})
-  unit: {symbol: $, is_prefix: true}
-  x_axis: [date, cohort_day]
-- id: arppu
-  label: ARPPU
-  select: SAFE_DIVIDE({kpi.revenue}, {kpi.daily_payers})
-  unit: {symbol: $, is_prefix: true}
-  x_axis: [date, cohort_day]
-- id: daily_payers
-  select: SUM({property.daily_payers})
-  x_axis: [date, cohort_day]
-- id: ltv
-  label: LTV
-  select: SAFE_DIVIDE(SUM({property.total_revenue}), SUM({property.cohort_size}))
-  unit: {symbol: $, is_prefix: true}
-  x_axis: [cohort_day]
-- id: revenue
-  select: SUM({property.revenue})
-  unit: {symbol: $, is_prefix: true}
-  x_axis: [date, cohort_day]
-cohorted_daily_kpis_days: [1, 2, 3, 4, 5, 6, 7, 14, 28, 30, 60, 90, 180, 365]
-cohorted_daily_kpis:
-- id: ltv_d{}
-  select: SAFE_DIVIDE(SUM({property.total_revenue}) * 100, SUM({property.cohort_size}))
-  where: '{property.cohort_day} = {}'
-  unit: {symbol: $, is_prefix: true}
+  arpdau:
+    label: ARPDAU
+    select: SAFE_DIVIDE({kpi.revenue}, {kpi.dau})
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {}
+      cohort_day: {}
+  arppu:
+    label: ARPPU
+    select: SAFE_DIVIDE({kpi.revenue}, {kpi.daily_payers})
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {}
+      cohort_day: {}
+  daily_payers:
+    select: SUM({property.daily_payers})
+    x_axis:
+      date: {}
+      cohort_day: {}
+  ltv:
+    label: LTV
+    select: SAFE_DIVIDE(SUM({property.total_revenue}), SUM({property.cohort_size}))
+    unit: {symbol: '%', is_prefix: false}
+    x_axis:
+      cohort_day: {}
+  ltv_d{}:
+    label: LTV D{}
+    select: SAFE_DIVIDE(SUM({property.total_revenue}) * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = {}'
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {total_function: avg}
+    template: cohort_day
+  revenue:
+    select: SUM({property.revenue})
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {}
+      cohort_day: {}

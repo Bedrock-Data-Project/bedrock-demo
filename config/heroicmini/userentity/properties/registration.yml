@@ -1,18 +1,42 @@
 # $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_properties.json
-first_appearance_properties:
-- column: {id: registration_date, data_type: DATE, can_filter: true, can_group_by: true}
-  source_column: date
-- column: {id: registration_country, data_type: STRING, can_filter: true, can_group_by: true}
-  source_column: country
-- column: {id: registration_platform, data_type: STRING, can_filter: true, can_group_by: true}
-  source_column: platform
-- column: {id: registration_build_version, data_type: STRING, can_filter: true, can_group_by: true}
-  source_column: build_version
-action_properties: []
-sliding_window_properties: []
-total_properties: []
-computed_properties:
-- column: {id: cohort_day, data_type: INTEGER, can_filter: true, can_group_by: true}
-  formula: '{EPOCH_DAYS(date)} - {EPOCH_DAYS(registration_date)}'
-- column: {id: cohort_size, data_type: INTEGER, can_filter: true, can_group_by: true}
-  formula: 1
+properties:
+  first_appearance_date:
+    data_type: DATE
+    can_filter: true
+    can_group_by: true
+    first_appearance_property: {source_column: date}
+  first_appearance_platform:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    first_appearance_property: {source_column: platform}
+  first_appearance_application_version:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    first_appearance_property: {source_column: application_version}
+  first_appearance_build_version:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    first_appearance_property: {source_column: build_version}
+  first_appearance_country:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    first_appearance_property: {source_column: country}
+  first_appearance_os_version:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    first_appearance_property: {source_column: os_version}
+  cohort_day:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    computed_property: {select: 'DATE_DIFF({date}, {first_appearance_date}, DAY)'}
+  cohort_size:
+    data_type: INTEGER
+    can_filter: false
+    can_group_by: false
+    computed_property: {select: 1}
