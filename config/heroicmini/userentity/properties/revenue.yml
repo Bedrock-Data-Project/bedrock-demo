@@ -9,7 +9,7 @@ properties:
     data_type: NUMBER
     can_filter: true
     can_group_by: true
-    sliding_window_property: {source_action_property: revenue, sliding_window_function: sum, relative_days_from: -27, relative_days_to: 0}
+    sliding_window_property: {source_property: revenue, window_function: sum, relative_days_from: -27, relative_days_to: 0}
   daily_payers:
     data_type: INTEGER
     can_filter: true
