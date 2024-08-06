@@ -9,17 +9,17 @@ properties:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    sliding_window_property: {source_action_property: active_today, sliding_window_function: sum, relative_days_from: -1, relative_days_to: -1}
+    sliding_window_property: {source_property: active_today, window_function: sum, relative_days_from: -1, relative_days_to: -1}
   days_active_last_7_days:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    sliding_window_property: {source_action_property: active_today, sliding_window_function: sum, relative_days_from: -6, relative_days_to: 0}
+    sliding_window_property: {source_property: active_today, window_function: sum, relative_days_from: -6, relative_days_to: 0}
   active_last_28_days:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    sliding_window_property: {source_action_property: active_today, sliding_window_function: max, relative_days_from: -27, relative_days_to: 0}
+    sliding_window_property: {source_property: active_today, window_function: max, relative_days_from: -27, relative_days_to: 0}
   last_login_date:
     data_type: DATE
     can_filter: true
