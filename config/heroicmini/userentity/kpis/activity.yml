@@ -35,5 +35,5 @@ kpis:
     where: '{property.cohort_day} = {}'
     unit: {symbol: '%', is_prefix: false}
     x_axis:
-      date: {}
+      date: {total_function: avg}
     template: cohort_day
