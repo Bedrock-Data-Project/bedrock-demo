@@ -31,7 +31,7 @@ kpis:
     where: '{property.cohort_day} = {}'
     unit: {symbol: $, is_prefix: true}
     x_axis:
-      date: {total_function: avg}
+      date: {}
     template: cohort_day
   revenue:
     select: SUM({property.revenue})
