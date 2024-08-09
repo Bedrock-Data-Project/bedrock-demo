@@ -3,10 +3,10 @@ name: Backfill
 on:
   workflow_dispatch:
     inputs:
-      date-from:
+      dateFrom:
         description: 'Backfill data from this date'
         required: true
-      date-to:
+      dateTo:
         description: 'Backfill data to this date'
         required: true
 
@@ -24,4 +24,4 @@ jobs:
           chmod +x asemic-cli
           export ASEMIC_API_TOKEN=${{ secrets.ASEMIC_API_TOKEN }}
           export ASEMIC_APP_ID_DIR=config/heroicmini
-          ./asemic-cli user-entity-model backfill --date-from=${INPUT_DATE_FROM} --date-to=${INPUT_DATE_TO}
+          ./asemic-cli user-entity-model backfill --date-from=${{ github.event.inputs.dateFrom }} --date-to=${{ github.event.inputs.dateTo }}
