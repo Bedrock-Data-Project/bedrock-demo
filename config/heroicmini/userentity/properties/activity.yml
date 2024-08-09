@@ -5,6 +5,15 @@ properties:
     can_filter: false
     can_group_by: false
     action_property: {source_action: activity, select: 1, aggregate_function: none, default_value: 0}
+  was_active_on_day:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    computed_property:
+      select: '{active_on_day}'
+      value_mappings:
+      - {constant: 0, new_value: Inactive on day}
+      - {constant: 1, new_value: Active on day}
   days_active_last_7_days:
     data_type: INTEGER
     can_filter: true
@@ -20,22 +29,11 @@ properties:
     can_filter: false
     can_group_by: false
     sliding_window_property: {source_property: active_on_day, window_function: sum, relative_days_from: -27, relative_days_to: 0}
-  was_active_on_day:
-    data_type: STRING
-    can_filter: true
-    can_group_by: true
-    computed_property:
-      select: '{active_on_day}'
-      value_mappings:
-      - {constant: 0, new_value: Inactive on day}
-      - {constant: 1, new_value: Active on day}
   mau_lost_on_day:
     data_type: INTEGER
     can_filter: false
     can_group_by: false
-    computed_property:
-      select: IF({date} - {last_login_date} = INTERVAL 27 DAY, 1, 0)
-      value_mappings: []
+    computed_property: {select: 'IF({date} - {last_login_date} = INTERVAL 27 DAY, 1, 0)'}
   last_login_date:
     data_type: DATE
     can_filter: true

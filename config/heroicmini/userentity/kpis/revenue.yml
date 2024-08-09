@@ -21,13 +21,13 @@ kpis:
       cohort_day: {}
   ltv:
     label: LTV
-    select: SAFE_DIVIDE(SUM({kpi.revenue}) * 100, SUM({property.cohort_size}))
+    select: SAFE_DIVIDE({kpi.revenue} * 100, SUM({property.cohort_size}))
     unit: {symbol: '%', is_prefix: false}
     x_axis:
       cohort_day: {}
   ltv_d{}:
     label: LTV D{}
-    select: SAFE_DIVIDE(SUM({kpi.revenue}) * 100, SUM({property.cohort_size}))
+    select: SAFE_DIVIDE({kpi.revenue} * 100, SUM({property.cohort_size}))
     where: '{property.cohort_day} = {}'
     unit: {symbol: $, is_prefix: true}
     x_axis:

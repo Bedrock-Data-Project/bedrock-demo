@@ -34,13 +34,9 @@ properties:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    computed_property:
-      select: DATE_DIFF({date}, {first_appearance_date}, DAY)
-      value_mappings: []
+    computed_property: {select: 'DATE_DIFF({date}, {first_appearance_date}, DAY)'}
   cohort_size:
     data_type: INTEGER
     can_filter: false
     can_group_by: false
-    computed_property:
-      select: 1
-      value_mappings: []
+    computed_property: {select: 1}

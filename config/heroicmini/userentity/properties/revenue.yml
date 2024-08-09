@@ -32,7 +32,7 @@ properties:
         new_value: Whale
   payers_on_day:
     data_type: INTEGER
-    can_filter: true
+    can_filter: false
     can_group_by: false
     action_property: {source_action: payment_transaction, select: 1, aggregate_function: none, default_value: 0}
   was_payer_on_day:

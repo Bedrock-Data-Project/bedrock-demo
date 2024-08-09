@@ -21,7 +21,7 @@ kpis:
   mdau:
     label: mDAU
     select: '{kpi.dau}'
-    where: '{property.was_payer_lifetime}'
+    where: '{property.payers_lifetime} > 0'
     x_axis:
       date: {total_function: avg}
       cohort_day: {}
