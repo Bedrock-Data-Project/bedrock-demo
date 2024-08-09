@@ -2,7 +2,7 @@
 kpis:
   dau:
     label: DAU
-    select: SUM({property.active_today})
+    select: SUM({property.active_on_day})
     x_axis:
       date: {total_function: avg}
       cohort_day: {}
@@ -14,14 +14,14 @@ kpis:
       cohort_day: {}
   mau_lost:
     label: MAU Lost
-    select: SUM(if({property.date} - {property.last_login_date} = interval 27 day, 1, 0))
+    select: SUM({property.mau_lost_on_day})
     x_axis:
       date: {}
       cohort_day: {}
   mdau:
     label: mDAU
     select: '{kpi.dau}'
-    where: '{property.is_payer}'
+    where: '{property.was_payer_lifetime}'
     x_axis:
       date: {total_function: avg}
       cohort_day: {}
@@ -35,5 +35,10 @@ kpis:
     where: '{property.cohort_day} = {}'
     unit: {symbol: '%', is_prefix: false}
     x_axis:
-      date: {}
+      date: {total_function: avg}
     template: cohort_day
+  stickiness:
+    select: SAFE_DIVIDE({kpi.dau} * 100, {kpi.mau})
+    unit: {symbol: '%', is_prefix: false}
+    x_axis:
+      date: {}
