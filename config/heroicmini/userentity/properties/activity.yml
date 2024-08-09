@@ -29,11 +29,11 @@ properties:
     can_filter: false
     can_group_by: false
     sliding_window_property: {source_property: active_on_day, window_function: sum, relative_days_from: -27, relative_days_to: 0}
-  mau_lost_on_day:
+  days_since_last_active:
     data_type: INTEGER
-    can_filter: false
-    can_group_by: false
-    computed_property: {select: 'IF({date} - {last_login_date} = INTERVAL 27 DAY, 1, 0)'}
+    can_filter: true
+    can_group_by: true
+    computed_property: {select: 'DATE_DIFF({date}, {last_login_date}, DAY)'}
   last_login_date:
     data_type: DATE
     can_filter: true
