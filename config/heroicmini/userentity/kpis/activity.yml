@@ -42,7 +42,7 @@ kpis:
     where: '{property.cohort_day} = {}'
     unit: {symbol: '%', is_prefix: false}
     x_axis:
-      date: {total_function: avg}
+      date: {}
     template: cohort_day
   stickiness:
     select: SAFE_DIVIDE({kpi.dau} * 100, {kpi.mau})
