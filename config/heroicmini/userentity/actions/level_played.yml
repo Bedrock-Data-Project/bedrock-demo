@@ -1,0 +1,20 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/action_logical_table.json
+table_name: gendemo.event_table
+tags: []
+columns:
+  user_id:
+    data_type: INTEGER
+    tags: [entity_id_column]
+  date:
+    data_type: DATE
+    tags: [date_column]
+  time:
+    data_type: DATETIME
+    tags: [action_timestamp_column]
+  session_id: {data_type: STRING}
+  event_name: {data_type: STRING}
+  level_played.skill: {data_type: NUMBER}
+  level_played.level: {data_type: INTEGER}
+  level_played.passed: {data_type: INTEGER}
+where: '{event_name} = ''level_played'''
+enrichments: []
