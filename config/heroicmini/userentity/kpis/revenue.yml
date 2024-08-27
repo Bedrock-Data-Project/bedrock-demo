@@ -39,3 +39,21 @@ kpis:
     x_axis:
       date: {}
       cohort_day: {}
+  revenue_last_2_days:
+    select: SUM({property.revenue_last_2_days})
+    unit: { symbol: $, is_prefix: true }
+    x_axis:
+      date: { }
+      cohort_day: { }
+  revenue_last_7_days_except_current_day:
+    select: SUM({property.revenue_last_7_days_except_current_day})
+    unit: { symbol: $, is_prefix: true }
+    x_axis:
+      date: { }
+      cohort_day: { }
+  revenue_day_before:
+    select: SUM({property.revenue_day_before})
+    unit: { symbol: $, is_prefix: true }
+    x_axis:
+      date: { }
+      cohort_day: { }
