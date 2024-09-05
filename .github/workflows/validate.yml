@@ -14,9 +14,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Validate
-        run: |
-          curl -L -o asemic-cli https://github.com/Bedrock-Data-Project/asemic-cli/releases/latest/download/asemic-cli-ubuntu
-          chmod +x asemic-cli
-          export ASEMIC_API_TOKEN=${{ secrets.ASEMIC_API_TOKEN }}
-          export ASEMIC_APP_ID_DIR=config/heroicmini
-          ./asemic-cli config validate
+        uses: Bedrock-Data-Project/asemic-cli-action@main
+        with:
+          version: 'latest'
+          token: ${{ secrets.ASEMIC_CLI_TOKEN }}
+          app_id_dir: config/heroicmini
+          command: config validate
+
