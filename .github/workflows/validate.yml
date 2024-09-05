@@ -17,7 +17,7 @@ jobs:
         uses: Bedrock-Data-Project/asemic-cli-action@main
         with:
           version: 'latest'
-          token: ${{ secrets.ASEMIC_CLI_TOKEN }}
+          token: ${{ secrets.ASEMIC_API_TOKEN }}
           app_id_dir: config/heroicmini
           command: config validate
 
