@@ -63,6 +63,11 @@ properties:
     can_filter: true
     can_group_by: false
     action_property: {source_action: payment_transaction, select: COUNT(*), aggregate_function: none, default_value: 0}
+  revenue_same_day:
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    sliding_window_property: { source_property: revenue_on_day, window_function: sum, relative_days_from: 0, relative_days_to: 0 }
   revenue_last_2_days:
     data_type: NUMBER
     can_filter: false
