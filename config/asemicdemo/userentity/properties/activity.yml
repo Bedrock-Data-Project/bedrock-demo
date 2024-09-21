@@ -1,16 +1,16 @@
 # $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_properties.json
 properties:
-  active_on_day:
+  dau_active:
     data_type: INTEGER
     can_filter: false
     can_group_by: false
     action_property: {source_action: login, select: 1, aggregate_function: none, default_value: 0}
-  was_active_on_day:
+  was_dau_active:
     data_type: STRING
     can_filter: true
     can_group_by: true
     computed_property:
-      select: '{active_on_day}'
+      select: '{dau_active}'
       value_mappings:
       - {constant: 0, new_value: Inactive on day}
       - {constant: 1, new_value: Active on day}
@@ -18,17 +18,17 @@ properties:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    sliding_window_property: {source_property: active_on_day, window_function: sum, relative_days_from: -6, relative_days_to: 0}
+    sliding_window_property: {source_property: dau_active, window_function: sum, relative_days_from: -6, relative_days_to: 0}
   days_active_last_28_days:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    sliding_window_property: {source_property: active_on_day, window_function: sum, relative_days_from: -27, relative_days_to: 0}
-  active_last_28_days:
+    sliding_window_property: {source_property: dau_active, window_function: sum, relative_days_from: -27, relative_days_to: 0}
+  mau_active:
     data_type: INTEGER
     can_filter: false
     can_group_by: false
-    sliding_window_property: {source_property: active_on_day, window_function: sum, relative_days_from: -27, relative_days_to: 0}
+    sliding_window_property: {source_property: dau_active, window_function: max, relative_days_from: -27, relative_days_to: 0}
   days_since_last_active:
     data_type: INTEGER
     can_filter: true
