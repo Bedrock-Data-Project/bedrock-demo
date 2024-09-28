@@ -1,32 +1,22 @@
-# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/action_logical_table.json
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/event_logical_table.json
 table_name: gendemo.ua_login
-tags: [activity_action]
+tags: [registration_event, activity_event]
 columns:
   user_id:
     data_type: INTEGER
     tags: [entity_id_column]
   time:
     data_type: DATETIME
-    tags: [action_timestamp_column]
+    tags: [event_timestamp_column]
   session_id: {data_type: STRING}
-  platform:
-    data_type: STRING
-    tags: [last_login_property]
-  application_version:
-    data_type: INTEGER
-    tags: [last_login_property]
-  build_version:
-    data_type: STRING
-    tags: [last_login_property]
-  country:
-    data_type: STRING
-    tags: [last_login_property]
+  platform: {data_type: STRING}
+  application_version: {data_type: INTEGER}
+  build_version: {data_type: STRING}
+  country: {data_type: STRING}
   language: {data_type: STRING}
   manufacturer: {data_type: STRING}
   model: {data_type: STRING}
-  os_version:
-    data_type: STRING
-    tags: [last_login_property]
+  os_version: {data_type: STRING}
   memory_size: {data_type: STRING}
   screen_width: {data_type: INTEGER}
   screen_height: {data_type: INTEGER}

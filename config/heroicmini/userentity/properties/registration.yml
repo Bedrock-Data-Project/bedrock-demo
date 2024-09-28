@@ -1,40 +1,35 @@
 # $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_properties.json
 properties:
-  first_appearance_date:
+  registration_date:
     data_type: DATE
     can_filter: true
     can_group_by: true
-    first_appearance_property: {source_column: date}
-  first_appearance_platform:
+    registration_property: {source_column: date}
+  registration_platform:
     data_type: STRING
     can_filter: true
     can_group_by: true
-    first_appearance_property: {source_column: platform}
-  first_appearance_application_version:
+    registration_property: {source_column: platform}
+  registration_application_version:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    first_appearance_property: {source_column: application_version}
-  first_appearance_build_version:
+    registration_property: {source_column: application_version}
+  registration_build_version:
     data_type: STRING
     can_filter: true
     can_group_by: true
-    first_appearance_property: {source_column: build_version}
-  first_appearance_country:
+    registration_property: {source_column: build_version}
+  registration_country:
     data_type: STRING
     can_filter: true
     can_group_by: true
-    first_appearance_property: {source_column: country}
-  first_appearance_os_version:
-    data_type: STRING
-    can_filter: true
-    can_group_by: true
-    first_appearance_property: {source_column: os_version}
+    registration_property: {source_column: country}
   cohort_day:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    computed_property: {select: 'DATE_DIFF({date}, {first_appearance_date}, DAY)'}
+    computed_property: {select: 'DATE_DIFF({date}, {registration_date}, DAY)'}
   cohort_size:
     data_type: INTEGER
     can_filter: false

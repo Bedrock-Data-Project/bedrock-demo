@@ -1,7 +1,0 @@
-# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_kpis.json
-kpis:
-  avg_levels_played:
-    select: SUM({property.levels_played_count})
-    x_axis:
-      date: {}
-      cohort_day: {}

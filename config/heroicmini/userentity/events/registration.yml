@@ -1,35 +1,25 @@
-# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/action_logical_table.json
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/event_logical_table.json
 table_name: gendemo.ua_registration
-tags: [first_appearance_action]
+tags: [registration_event, activity_event]
 columns:
   user_id:
     data_type: INTEGER
     tags: [entity_id_column]
   time:
     data_type: DATETIME
-    tags: [action_timestamp_column]
+    tags: [event_timestamp_column]
   session_id: {data_type: STRING}
   engagement: {data_type: NUMBER}
   payment_propensity: {data_type: NUMBER}
   skill: {data_type: NUMBER}
-  platform:
-    data_type: STRING
-    tags: [first_appearance_property]
-  application_version:
-    data_type: INTEGER
-    tags: [first_appearance_property]
-  build_version:
-    data_type: STRING
-    tags: [first_appearance_property]
-  country:
-    data_type: STRING
-    tags: [first_appearance_property]
+  platform: {data_type: STRING, tags: [registration_property]}
+  application_version: {data_type: INTEGER, tags: [registration_property]}
+  build_version: {data_type: STRING, tags: [registration_property]}
+  country: {data_type: STRING, tags: [registration_property]}
   language: {data_type: STRING}
   manufacturer: {data_type: STRING}
   model: {data_type: STRING}
-  os_version:
-    data_type: STRING
-    tags: [first_appearance_property]
+  os_version: {data_type: STRING}
   memory_size: {data_type: STRING}
   screen_width: {data_type: INTEGER}
   screen_height: {data_type: INTEGER}
