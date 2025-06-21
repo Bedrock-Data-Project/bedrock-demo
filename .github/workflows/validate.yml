@@ -18,6 +18,6 @@ jobs:
         with:
           version: 'latest'
           token: ${{ secrets.ASEMIC_API_TOKEN }}
-          app_id_dir: config/heroicmini
+          app_id_dir: config/julia
           command: config validate
 
