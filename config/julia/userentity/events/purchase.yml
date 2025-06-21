@@ -8,6 +8,8 @@ columns:
   time:
     data_type: DATETIME
     tags: [event_timestamp_column]
+  amount: {data_type: NUMBER}
+  currency: {data_type: STRING}
   session_id: {data_type: STRING}
   context_group_id: {data_type: STRING}
   log_counter: {data_type: INTEGER}

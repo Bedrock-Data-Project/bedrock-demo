@@ -8,6 +8,13 @@ columns:
   time:
     data_type: DATETIME
     tags: [event_timestamp_column]
+  elo_rating: {data_type: INTEGER}
+  xp: {data_type: INTEGER}
+  level: {data_type: INTEGER}
+  arena_level: {data_type: INTEGER}
+  battle: {data_type: INTEGER}
+  tutorial_battle: {data_type: INTEGER}
+  battle_type: {data_type: STRING}
   session_id: {data_type: STRING}
   context_group_id: {data_type: STRING}
   log_counter: {data_type: INTEGER}
