@@ -1,6 +1,6 @@
 # $schema: http://schema.asemicanalytics.com/v1/semantic_layer/event_logical_table.json
 table_name: julia_raw.purchase
-tags: [registration_event, activity_event]
+tags: [registration_event, activity_event, payment_transaction_event]
 columns:
   user_id:
     data_type: INTEGER
@@ -8,7 +8,9 @@ columns:
   time:
     data_type: DATETIME
     tags: [event_timestamp_column]
-  amount: {data_type: NUMBER}
+  amount:
+    data_type: NUMBER
+    tags: [transaction_amount_column]
   currency: {data_type: STRING}
   session_id: {data_type: STRING}
   context_group_id: {data_type: STRING}

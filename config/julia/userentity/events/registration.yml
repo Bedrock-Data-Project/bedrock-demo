@@ -5,6 +5,8 @@ columns:
   user_id:
     data_type: INTEGER
     tags: [entity_id_column]
+  country: {data_type: STRING}
+  platform: {data_type: STRING}
   time:
     data_type: DATETIME
     tags: [event_timestamp_column]
