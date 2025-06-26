@@ -20,7 +20,7 @@ properties:
     data_type: INTEGER
     can_filter: true
     can_group_by: open_chest
-    event_property: {source_event: open_chest, where: "chest_type = 'battle_chest'", select: 1, aggregate_function: sum, default_value: 0}
+    event_property: {source_event: open_chest, where: '{chest_type} = ''battle_chest''', select: 1, aggregate_function: sum, default_value: 0}
   # silver_chests_opened:
 
   # golden_chests_opened:
