@@ -19,8 +19,8 @@ properties:
   battle_chests_opened:
     data_type: INTEGER
     can_filter: true
-    can_group_by: open_chest
-    event_property: {source_event: open_chest, where: '{chest_type} = ''battle_chest''', select: 1, aggregate_function: sum, default_value: 0}
+    can_group_by: true
+    event_property: {source_event: open_chest, where: "{chest_type} = 'battle_chest'", select: 1, aggregate_function: sum, default_value: 0}
   # silver_chests_opened:
 
   # golden_chests_opened:
