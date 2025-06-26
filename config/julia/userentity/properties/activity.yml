@@ -41,3 +41,9 @@ properties:
     lifetime_property:
       source_event_property: {source_event: entity_activity, select: '{_date}', aggregate_function: last_value}
       merge_function: last_value
+  sessions_count:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    event_property: {source_event: login, select: 1, aggregate_function: sum, default_value: 0}
+  
