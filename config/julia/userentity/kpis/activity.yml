@@ -30,13 +30,36 @@ kpis:
     unit: {symbol: '%', is_prefix: false}
     x_axis:
       cohort_day: {}
-  retention_d{}:
+  retention_d1:
     select: SAFE_DIVIDE({kpi.dau} * 100, SUM({property.cohort_size}))
-    where: '{property.cohort_day} = {}'
+    where: '{property.cohort_day} = 1'
     unit: {symbol: '%', is_prefix: false}
     x_axis:
       _date: {}
-    template: cohort_day
+  retention_d7:
+    select: SAFE_DIVIDE({kpi.dau} * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = 7'
+    unit: {symbol: '%', is_prefix: false}
+    x_axis:
+      _date: {}
+  retention_d30:
+    select: SAFE_DIVIDE({kpi.dau} * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = 30'
+    unit: {symbol: '%', is_prefix: false}
+    x_axis:
+      _date: {}
+  retention_d90:
+    select: SAFE_DIVIDE({kpi.dau} * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = 90'
+    unit: {symbol: '%', is_prefix: false}
+    x_axis:
+      _date: {}
+  retention_d180:
+    select: SAFE_DIVIDE({kpi.dau} * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = 180'
+    unit: {symbol: '%', is_prefix: false}
+    x_axis:
+      _date: {}
   stickiness:
     select: SAFE_DIVIDE({kpi.dau} * 100, {kpi.mau})
     unit: {symbol: '%', is_prefix: false}

@@ -32,14 +32,41 @@ kpis:
     unit: {symbol: '%', is_prefix: false}
     x_axis:
       cohort_day: {}
-  ltv_d{}:
-    label: LTV D{}
+  ltv_d1:
+    label: LTV D1
     select: SAFE_DIVIDE({kpi.revenue} * 100, SUM({property.cohort_size}))
-    where: '{property.cohort_day} = {}'
+    where: '{property.cohort_day} = 1'
     unit: {symbol: $, is_prefix: true}
     x_axis:
       _date: {}
-    template: cohort_day
+  ltv_d7:
+    label: LTV D7
+    select: SAFE_DIVIDE({kpi.revenue} * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = 7'
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      _date: {}
+  ltv_d30:
+    label: LTV D30
+    select: SAFE_DIVIDE({kpi.revenue} * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = 30'
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      _date: {}
+  ltv_d90:
+    label: LTV D90
+    select: SAFE_DIVIDE({kpi.revenue} * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = 90'
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      _date: {}
+  ltv_d180:
+    label: LTV D180
+    select: SAFE_DIVIDE({kpi.revenue} * 100, SUM({property.cohort_size}))
+    where: '{property.cohort_day} = 180'
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      _date: {}
   revenue:
     select: SUM({property.revenue_on_day})
     unit: {symbol: $, is_prefix: true}

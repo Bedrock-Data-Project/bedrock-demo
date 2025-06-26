@@ -21,13 +21,29 @@ properties:
     can_filter: true
     can_group_by: true
     event_property: {source_event: open_chest, where: "{chest_type} = 'battle_chest'", select: 1, aggregate_function: sum, default_value: 0}
-  # silver_chests_opened:
-
-  # golden_chests_opened:
-
-  # magical_chests_opened:
-
-  # victory_chests_opened:
-
-  # free_chests_opened:
+  silver_chests_opened:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    event_property: {source_event: open_chest, where: "{chest_name} = 'silver'", select: 1, aggregate_function: sum, default_value: 0}
+  golden_chests_opened:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    event_property: {source_event: open_chest, where: "{chest_name} = 'golden'", select: 1, aggregate_function: sum, default_value: 0}
+  magical_chests_opened:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    event_property: {source_event: open_chest, where: "{chest_name} = 'magical'", select: 1, aggregate_function: sum, default_value: 0}
+  victory_chests_opened:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    event_property: {source_event: open_chest, where: "{chest_name} = 'victory_chest'", select: 1, aggregate_function: sum, default_value: 0}
+  free_chests_opened:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    event_property: {source_event: open_chest, where: "{chest_name} = 'free_chest'", select: 1, aggregate_function: sum, default_value: 0}
 
