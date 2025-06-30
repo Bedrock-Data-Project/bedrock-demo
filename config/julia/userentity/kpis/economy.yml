@@ -1,22 +1,17 @@
 # $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_kpis.json
 kpis:
   avg_gold_gained:
-    select: SAFE_DIVIDE(SUM({property.gold_gained}) * 100, {kpi.dau})
+    select: SAFE_DIVIDE(SUM({property.gold_gained}), {kpi.dau})
     x_axis:
       _date: {}
       cohort_day: {}
-  # median_gold_gained:
-  #   select: SAFE_DIVIDE(MEDIAN({property.gold_gained}) * 100, {kpi.day})
-  #   x_axis:
-  #     _date: {}
-  #     cohort_day: {}
   avg_gold_spent:
-    select: SAFE_DIVIDE(SUM({property.gold_spent}) * 100, {kpi.dau})
+    select: SAFE_DIVIDE(SUM({property.gold_spent}), {kpi.dau})
     x_axis:
       _date: {}
       cohort_day: {}
   avg_gold_stash:
-    select: SAFE_DIVIDE(SUM({property.gold_stash}) * 100, {kpi.dau})
+    select: SAFE_DIVIDE(SUM({property.gold_stash}), {kpi.dau})
     x_axis:
       _date: {}
       cohort_day: {}

@@ -6,32 +6,32 @@ kpis:
       _date: {}
       cohort_day: {}
   avg_battle_chests_opened:
-    select: SAFE_DIVIDE(SUM({property.battle_chests_opened}) * 100, {kpi.dau})
+    select: SAFE_DIVIDE(SUM({property.battle_chests_opened}), {kpi.dau})
     x_axis:
       _date: {}
       cohort_day: {}      
   avg_silver_chests_opened_opened:
-    select: SAFE_DIVIDE(SUM({property.silver_chests_opened}) * 100, {kpi.dau})
+    select: SAFE_DIVIDE(SUM({property.silver_chests_opened}), {kpi.dau})
     x_axis:
       _date: {}
       cohort_day: {}      
   avg_golden_chests_opened_opened:
-    select: SAFE_DIVIDE(SUM({property.golden_chests_opened}) * 100, {kpi.dau})
+    select: SAFE_DIVIDE(SUM({property.golden_chests_opened}), {kpi.dau})
     x_axis:
       _date: {}
       cohort_day: {}      
   avg_magical_chests_opened_opened:
-    select: SAFE_DIVIDE(SUM({property.magical_chests_opened}) * 100, {kpi.dau})
+    select: SAFE_DIVIDE(SUM({property.magical_chests_opened}), {kpi.dau})
     x_axis:
       _date: {}
       cohort_day: {}      
   avg_victory_chests_opened_opened:
-    select: SAFE_DIVIDE(SUM({property.victory_chests_opened}) * 100, {kpi.dau})
+    select: SAFE_DIVIDE(SUM({property.victory_chests_opened}), {kpi.dau})
     x_axis:
       _date: {}
       cohort_day: {}      
   avg_free_chests_opened_opened:
-    select: SAFE_DIVIDE(SUM({property.free_chests_opened}) * 100, {kpi.dau})
+    select: SAFE_DIVIDE(SUM({property.free_chests_opened}), {kpi.dau})
     x_axis:
       _date: {}
       cohort_day: {}      
