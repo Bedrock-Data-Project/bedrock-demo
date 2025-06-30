@@ -46,4 +46,8 @@ properties:
     can_filter: true
     can_group_by: true
     event_property: {source_event: login, select: 1, aggregate_function: sum, default_value: 0}
-  
+  mau_reactivated:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    computed_property: {select: '{cohort_day} > 28 and {days_active_last_28_days} = 1 and {dau_active} = 1'}

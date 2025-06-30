@@ -20,8 +20,13 @@ kpis:
       cohort_day: {}
   mau_lost:
     label: MAU Lost
-    select: SUM({property.cohort_size})
-    where: '{property.days_since_last_active} = 27'
+    select: SUM({property.mau_lost})
+    x_axis:
+      _date: {}
+      cohort_day: {}
+  mau_reactivated:
+    label: MAU Reactivated
+    select: SUM({property.mau_reactivated})
     x_axis:
       _date: {}
       cohort_day: {}
