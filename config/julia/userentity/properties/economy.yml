@@ -4,29 +4,29 @@ properties:
     data_type: INTEGER
     can_filter: true
     can_group_by: false
-    event_property: {source_event: currency_change, where: "{currency_type} = 'gold' and {amount} > 0", select: "{amount}", aggregate_function: sum, default_value: 0}
+    event_property: {source_event: currency_change, where: "{currency_type} = 'Gold' and {amount} > 0", select: "{amount}", aggregate_function: sum, default_value: 0}
   gold_spent:
     data_type: INTEGER
     can_filter: true
     can_group_by: false
-    event_property: {source_event: currency_change, where: "{currency_type} = 'gold' and {amount} < 0", select: "-{amount}", aggregate_function: sum, default_value: 0}
+    event_property: {source_event: currency_change, where: "{currency_type} = 'Gold' and {amount} < 0", select: "-{amount}", aggregate_function: sum, default_value: 0}
   gold_stash:
     data_type: INTEGER
     can_filter: true
     can_group_by: false
-    event_property: {source_event: currency_change, where: "{currency_type} = 'gold'", select: "{stash}", aggregate_function: last_value, default_value: 0}
+    event_property: {source_event: currency_change, where: "{currency_type} = 'Gold'", select: "{stash}", aggregate_function: last_value, default_value: 0}
   gems_gained:
     data_type: INTEGER
     can_filter: true
     can_group_by: false
-    event_property: {source_event: currency_change, where: "{currency_type} = 'gems' and {amount} > 0", select: "{amount}", aggregate_function: sum, default_value: 0}
+    event_property: {source_event: currency_change, where: "{currency_type} = 'Gems' and {amount} > 0", select: "{amount}", aggregate_function: sum, default_value: 0}
   gems_spent:
     data_type: INTEGER
     can_filter: true
     can_group_by: false
-    event_property: {source_event: currency_change, where: "{currency_type} = 'gems' and {amount} < 0", select: "-{amount}", aggregate_function: sum, default_value: 0}
+    event_property: {source_event: currency_change, where: "{currency_type} = 'Gems' and {amount} < 0", select: "-{amount}", aggregate_function: sum, default_value: 0}
   gems_stash:
     data_type: INTEGER
     can_filter: true
     can_group_by: false
-    event_property: {source_event: currency_change, where: "{currency_type} = 'gems'", select: "{stash}", aggregate_function: last_value, default_value: 0}
+    event_property: {source_event: currency_change, where: "{currency_type} = 'Gems'", select: "{stash}", aggregate_function: last_value, default_value: 0}
