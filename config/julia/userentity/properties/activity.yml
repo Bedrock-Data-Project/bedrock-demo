@@ -46,6 +46,11 @@ properties:
     can_filter: true
     can_group_by: true
     event_property: {source_event: login, select: 1, aggregate_function: sum, default_value: 0}
+  mau_lost:
+    data_type: INTEGER
+    can_filter: true
+    can_group_by: true
+    computed_property: {select: '{days_since_last_active} = 29'}
   mau_reactivated:
     data_type: INTEGER
     can_filter: true
