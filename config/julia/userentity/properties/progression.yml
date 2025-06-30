@@ -9,7 +9,7 @@ properties:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    event_property: {source_event: battle_ended, select: 1, aggregate_function: sum, default_value: 0}
+    event_property: {source_event: battle_ended, where: "{won} = 1", select: 1, aggregate_function: sum, default_value: 0}
   # arena_level:
   #   data_type: INTEGER
   #   can_filter: true
@@ -46,4 +46,3 @@ properties:
     can_filter: true
     can_group_by: true
     event_property: {source_event: open_chest, where: "{chest_name} = 'free_chest'", select: 1, aggregate_function: sum, default_value: 0}
-
