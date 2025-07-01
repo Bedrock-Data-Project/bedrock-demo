@@ -19,4 +19,12 @@ jobs:
           version: 'latest'
           token: ${{ secrets.ASEMIC_API_TOKEN }}
           app_id_dir: config/julia
+          command: config validate
+          
+      - name: Push
+        uses: Bedrock-Data-Project/asemic-cli-action@main
+        with:
+          version: 'latest'
+          token: ${{ secrets.ASEMIC_API_TOKEN }}
+          app_id_dir: config/julia
           command: config push
