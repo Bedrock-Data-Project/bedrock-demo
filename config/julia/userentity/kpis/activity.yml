@@ -12,6 +12,12 @@ kpis:
     x_axis:
       _date: {total_function: avg}
       cohort_day: {}
+  wau:
+    label: WAU
+    select: SUM({property.wau_active})
+    x_axis:
+      _date: {total_function: avg}
+      cohort_day: {}
   mau:
     label: MAU
     select: SUM({property.mau_active})
