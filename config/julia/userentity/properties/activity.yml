@@ -50,9 +50,9 @@ properties:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    computed_property: {select: '{days_since_last_active} = 29'}
+    computed_property: {select: 'if({days_since_last_active} = 29, 1, 0)'}
   mau_reactivated:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    computed_property: {select: '{cohort_day} > 28 and {days_active_last_28_days} = 1 and {dau_active} = 1'}
+    computed_property: {select: 'if({cohort_day} > 28 and {days_active_last_28_days} = 1 and {dau_active} = 1, 1, 0)'}
