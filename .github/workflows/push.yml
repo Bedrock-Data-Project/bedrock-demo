@@ -18,7 +18,7 @@ jobs:
         with:
           version: 'latest'
           token: ${{ secrets.ASEMIC_API_TOKEN }}
-          app_id_dir: config/julia
+          app_id_dir: config/clonemini
           command: config validate
           
       - name: Push
@@ -26,5 +26,5 @@ jobs:
         with:
           version: 'latest'
           token: ${{ secrets.ASEMIC_API_TOKEN }}
-          app_id_dir: config/julia
+          app_id_dir: config/clonemini
           command: config push
