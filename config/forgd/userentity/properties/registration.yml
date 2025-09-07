@@ -2,14 +2,44 @@
 properties:
   registration_date:
     data_type: DATE
+    can_filter: false
+    can_group_by: false
+    registration_property: {source_column: date}
+  coin:
+    data_type: STRING
     can_filter: true
     can_group_by: true
-    registration_property: {source_column: _date}
+    registration_property: {source_column: coingecko_id}
+  market:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    registration_property: {source_column: exchange_id}
+  base:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    registration_property: {source_column: base}
+  target:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    registration_property: {source_column: target}
+  trading_pair:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    registration_property: {source_column: trading_pair}
+  market_maker:
+    data_type: STRING
+    can_filter: true
+    can_group_by: true
+    registration_property: {source_column: market_maker_id}
   cohort_day:
     data_type: INTEGER
     can_filter: true
     can_group_by: true
-    computed_property: {select: 'DATE_DIFF({_date}, {registration_date}, DAY)'}
+    computed_property: {select: 'DATE_DIFF({date}, {registration_date}, DAY)'}
   cohort_size:
     data_type: INTEGER
     can_filter: false

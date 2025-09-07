@@ -1,0 +1,49 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_properties.json
+properties:
+  price:
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    event_property: {source_event: v_history_points, select: "{price}", aggregate_function: avg, where: '{good_data}'}
+  volume:
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    event_property: {source_event: v_history_points, select: "{volume}", aggregate_function: avg, where: '{good_data}'}
+  spread:
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    event_property: {source_event: v_history_points, select: "{spread}", aggregate_function: avg, where: '{good_data}'}
+  cost_to_move_up:
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    event_property: {source_event: v_history_points, select: "{cost_to_move_up}", aggregate_function: avg, where: '{good_data}'}
+  cost_to_move_down:
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    event_property: {source_event: v_history_points, select: "{cost_to_move_down}", aggregate_function: avg, where: '{good_data}'}
+  cost_to_move_up_down:
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    computed_property: {select: "{cost_to_move_down} + {cost_to_move_up}"}
+  true_spread:
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    event_property: {source_event: v_history_points, select: 'SUM({spread}*{volume})/SUM({volume})', aggregate_function: none, where: '{good_data}'}
+  eod_price:
+    label: "EOD Price"
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    event_property: {source_event: v_history_points, select: "{price}", aggregate_function: last_value, where: '{good_data}'}
+  eod_volume:
+    label: "EOD Volume"
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    event_property: {source_event: v_history_points, select: "{volume}", aggregate_function: last_value, where: '{good_data}'}

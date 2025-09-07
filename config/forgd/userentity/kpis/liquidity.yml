@@ -1,0 +1,56 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_kpis.json
+kpis:
+  liquidity:
+    select: SUM({property.cost_to_move_up_down})
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {total_function: avg}
+  price:
+    select: SAFE_DIVIDE(SUM({property.price}*{property.volume}), SUM({property.volume}))
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {total_function: avg}
+  avg_spread:
+    select: SAFE_DIVIDE(SUM({property.spread}*{property.volume}), SUM({property.volume}))
+    x_axis:
+      date: {total_function: avg}
+  ask:
+    select: SAFE_DIVIDE(SUM({property.cost_to_move_up}*{property.volume}), SUM({property.volume}))
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {}
+  bid:
+    select: SAFE_DIVIDE(SUM({property.cost_to_move_down}*{property.volume}), SUM({property.volume}))
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {}
+
+  # Market Makers
+  mm_liquidity_200:
+    select: SUM({property.mm_liquidity_200})
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {total_function: avg}
+  projects:
+    select: "COUNT(distinct {property.coin})"
+    x_axis:
+      date: {total_function: avg}
+  avg_liquidity_per_project:
+    select: SAFE_DIVIDE({kpi.mm_liquidity_200}, {kpi.projects})
+    x_axis:
+      date: {total_function: avg}
+
+
+  # Mixed
+  # BUG:
+  #   select: "{kpi.liquidity}-{kpi.mm_liquidity_200}"
+  #   unit: {symbol: $, is_prefix: true}
+  #   x_axis:
+  #     date: {total_function: avg}
+
+  other_liquidity_200:
+    select: "SUM({property.cost_to_move_up_down}) - SUM({property.mm_liquidity_200})"
+    unit: {symbol: $, is_prefix: true}
+    x_axis:
+      date: {total_function: avg}
+

@@ -1,0 +1,35 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/event_logical_table.json
+table_name: timescale_data.v_history_points
+tags: [registration_event, activity_event]
+columns:
+  entity_id:
+    data_type: STRING
+    tags: [entity_id_column]
+  market_maker_id: {data_type: STRING, tags: [registration_property]}
+  id: {data_type: STRING}
+  coingecko_id: {data_type: STRING, tags: [registration_property]}
+  timestamp:
+    data_type: DATETIME
+    tags: [event_timestamp_column]
+  last_traded_at: {data_type: DATETIME}
+  last_fetch_at: {data_type: DATETIME}
+  market: {data_type: STRING}
+  is_centralized: {data_type: BOOLEAN}
+  coin_id: {data_type: STRING}
+  target_coin_id: {data_type: STRING}
+  base: {data_type: STRING, tags: [registration_property]}
+  target: {data_type: STRING, tags: [registration_property]}
+  price: {data_type: NUMBER}
+  volume: {data_type: NUMBER}
+  spread: {data_type: NUMBER}
+  trust_score: {data_type: STRING}
+  is_anomaly: {data_type: BOOLEAN}
+  cost_to_move_up: {data_type: NUMBER}
+  cost_to_move_down: {data_type: NUMBER}
+  trading_pair: {data_type: STRING, tags: [registration_property]}
+  exchange_id: {data_type: STRING, tags: [registration_property]}
+  date:
+    data_type: DATE
+    tags: [date_column]
+  good_data: {data_type: BOOLEAN}
+enrichments: []

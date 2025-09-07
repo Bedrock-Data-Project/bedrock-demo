@@ -1,0 +1,52 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/event_logical_table.json
+table_name: timescale_data.v_drop_data_records
+tags: [registration_event, activity_event]
+columns:
+  entity_id:
+    data_type: STRING
+    tags: [entity_id_column]
+  coingecko_id: {data_type: STRING, tags: [registration_property]}
+  timestamp:
+    data_type: DATETIME
+    tags: [event_timestamp_column]
+  id: {data_type: STRING}
+  project_id: {data_type: STRING}
+  date:
+    data_type: DATE
+    tags: [date_column]
+  bid_depth_50: {data_type: NUMBER}
+  ask_depth_50: {data_type: NUMBER}
+  bid_ask_depth_50: {data_type: NUMBER}
+  kpi_bid_ask_depth_50: {data_type: NUMBER}
+  uptime_bid_ask_depth_50: {data_type: NUMBER}
+  bid_depth_100: {data_type: NUMBER}
+  ask_depth_100: {data_type: NUMBER}
+  bid_ask_depth_100: {data_type: NUMBER}
+  kpi_bid_ask_depth_100: {data_type: NUMBER}
+  uptime_bid_ask_depth_100: {data_type: NUMBER}
+  bid_depth_200: {data_type: NUMBER}
+  ask_depth_200: {data_type: NUMBER}
+  bid_ask_depth_200: {data_type: NUMBER}
+  kpi_bid_ask_depth_200: {data_type: NUMBER}
+  uptime_bid_ask_depth_200: {data_type: NUMBER}
+  bid_ask_spread: {data_type: NUMBER}
+  kpi_bid_ask_depth_spread: {data_type: NUMBER}
+  uptime_spread: {data_type: NUMBER}
+  order_fill_volume_maker: {data_type: NUMBER}
+  order_fill_volume_taker: {data_type: NUMBER}
+  market_maker_id: {data_type: STRING, tags: [registration_property]}
+  created_at: {data_type: DATETIME}
+  file_id: {data_type: STRING}
+  exchange: {data_type: STRING}
+  trading_pair: {data_type: STRING, tags: [registration_property]}
+  exchange_id: {data_type: STRING, tags: [registration_property]}
+  backup_order_fill_volume_maker: {data_type: NUMBER}
+  backup_order_fill_volume_taker: {data_type: NUMBER}
+  backup_order_fill_volume_total: {data_type: NUMBER}
+  backup_order_fill_volume: {data_type: BOOLEAN}
+  order_fill_volume_total: {data_type: NUMBER}
+  base_coin_id: {data_type: STRING}
+  base_coin_symbol: {data_type: STRING}
+  quote_coin_id: {data_type: STRING}
+  quote_coin_symbol: {data_type: STRING}
+enrichments: []

@@ -1,0 +1,7 @@
+# $schema: http://schema.asemicanalytics.com/v1/semantic_layer/entity_properties.json
+properties:
+  mm_liquidity_200:
+    data_type: NUMBER
+    can_filter: false
+    can_group_by: false
+    event_property: {source_event: v_drop_data_records, select: "{bid_ask_depth_200}", aggregate_function: avg}
