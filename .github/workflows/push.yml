@@ -26,5 +26,5 @@ jobs:
         with:
           version: 'latest'
           token: ${{ secrets.ASEMIC_API_TOKEN }}
-          app_id_dir: config/clonemini
+          app_id_dir: config/forgd
           command: config push
